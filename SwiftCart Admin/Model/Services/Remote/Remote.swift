@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol Servicing{
+    associatedtype T
+    func fetchData(complation: @escaping (T)->())
+}
+
