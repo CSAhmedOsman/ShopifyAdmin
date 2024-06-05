@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04001E612C0F3B1F00FB7030 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 04001E602C0F3B1F00FB7030 /* Cosmos */; };
 		0420004C2C0A142D00356A03 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420004B2C0A142D00356A03 /* Coordinator.swift */; };
 		0420004F2C0A6C7900356A03 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420004E2C0A6C7900356A03 /* AppCoordinator.swift */; };
-		0480C8612C0D345A00629C35 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480C8602C0D345A00629C35 /* HomeCoordinator.swift */; };
 		0480C8622C0D369A00629C35 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D135162C0A78B6001E27E7 /* HomeViewController.swift */; };
 		048FC06A2C0DB2DA003C293D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049961242C0D721F00466BA3 /* AuthViewController.swift */; };
-		048FC06B2C0DB2DD003C293D /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049961222C0D721F00466BA3 /* AuthCoordinator.swift */; };
 		048FC06D2C0DB8C4003C293D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048FC06C2C0DB8C4003C293D /* Main.storyboard */; };
-		048FC0742C0DC0DD003C293D /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 048FC0732C0DC0DD003C293D /* RxAlamofire */; };
 		049850662C09F6BF00F2E137 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049850652C09F6BF00F2E137 /* AppDelegate.swift */; };
 		049850682C09F6BF00F2E137 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049850672C09F6BF00F2E137 /* SceneDelegate.swift */; };
 		0498506F2C09F6C100F2E137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0498506E2C09F6C100F2E137 /* Assets.xcassets */; };
@@ -29,7 +27,6 @@
 /* Begin PBXFileReference section */
 		0420004B2C0A142D00356A03 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		0420004E2C0A6C7900356A03 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		0480C8602C0D345A00629C35 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		048FC06C2C0DB8C4003C293D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		049850622C09F6BF00F2E137 /* SwiftCart Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftCart Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		049850652C09F6BF00F2E137 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +37,6 @@
 		0498507D2C09F76900F2E137 /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
 		0498507F2C09F77400F2E137 /* Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local.swift; sourceTree = "<group>"; };
 		049850822C09F78800F2E137 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		049961222C0D721F00466BA3 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		049961242C0D721F00466BA3 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		049961262C0D722000466BA3 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		049961282C0D722000466BA3 /* AuthViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewData.swift; sourceTree = "<group>"; };
@@ -64,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				048FC0742C0DC0DD003C293D /* RxAlamofire in Frameworks */,
+				04001E612C0F3B1F00FB7030 /* Cosmos in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +208,6 @@
 		049961212C0D71DE00466BA3 /* Autantication */ = {
 			isa = PBXGroup;
 			children = (
-				049961222C0D721F00466BA3 /* AuthCoordinator.swift */,
 				049961292C0D722000466BA3 /* Views */,
 				049961232C0D721F00466BA3 /* ViewControllers */,
 				049961252C0D721F00466BA3 /* ViewModels */,
@@ -265,7 +260,6 @@
 		04D134EF2C0A77D8001E27E7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				0480C8602C0D345A00629C35 /* HomeCoordinator.swift */,
 				04D135082C0A77DA001E27E7 /* Views */,
 				04D135022C0A77D9001E27E7 /* ViewControllers */,
 				04D134F02C0A77D8001E27E7 /* ViewModels */,
@@ -332,7 +326,7 @@
 			);
 			name = "SwiftCart Admin";
 			packageProductDependencies = (
-				048FC0732C0DC0DD003C293D /* RxAlamofire */,
+				04001E602C0F3B1F00FB7030 /* Cosmos */,
 			);
 			productName = "SwiftCart Admin";
 			productReference = 049850622C09F6BF00F2E137 /* SwiftCart Admin.app */;
@@ -363,7 +357,7 @@
 			);
 			mainGroup = 049850592C09F6BF00F2E137;
 			packageReferences = (
-				048FC0722C0DC0DD003C293D /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				04001E5F2C0F3B1F00FB7030 /* XCRemoteSwiftPackageReference "Cosmos" */,
 			);
 			productRefGroup = 049850632C09F6BF00F2E137 /* Products */;
 			projectDirPath = "";
@@ -396,8 +390,6 @@
 				049850662C09F6BF00F2E137 /* AppDelegate.swift in Sources */,
 				049850832C09F78800F2E137 /* Models.swift in Sources */,
 				04D1350E2C0A77DA001E27E7 /* TempCoordinator.swift in Sources */,
-				048FC06B2C0DB2DD003C293D /* AuthCoordinator.swift in Sources */,
-				0480C8612C0D345A00629C35 /* HomeCoordinator.swift in Sources */,
 				0420004F2C0A6C7900356A03 /* AppCoordinator.swift in Sources */,
 				04D135102C0A77DA001E27E7 /* HomeView.swift in Sources */,
 				048FC06A2C0DB2DA003C293D /* AuthViewController.swift in Sources */,
@@ -552,7 +544,6 @@
 				INFOPLIST_FILE = "SwiftCart Admin/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -579,7 +570,6 @@
 				INFOPLIST_FILE = "SwiftCart Admin/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -619,21 +609,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		048FC0722C0DC0DD003C293D /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
+		04001E5F2C0F3B1F00FB7030 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire";
+			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.0;
+				minimumVersion = 25.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		048FC0732C0DC0DD003C293D /* RxAlamofire */ = {
+		04001E602C0F3B1F00FB7030 /* Cosmos */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 048FC0722C0DC0DD003C293D /* XCRemoteSwiftPackageReference "RxAlamofire" */;
-			productName = RxAlamofire;
+			package = 04001E5F2C0F3B1F00FB7030 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
