@@ -9,15 +9,40 @@ import UIKit
 
 class HomeViewController: UIViewController {
     weak var coordinator: AppCoordinator?
+
+    @IBOutlet weak var spaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    @IBOutlet weak var label: UILabel!
+    var isSearchBarVisible = false
+    var searchBarHeight: CGFloat = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        label.text = "\(Date())"
+        self.navigationController?.navigationBar.isHidden = true
+        searchBar.isHidden = true
     }
-    @IBAction func gotoAnother(_ sender: Any) {
-//        coordinator?.gotoAuth()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchBarHeight = searchBar.frame.height + 8
+        
+  }
+    
+    @IBAction func toggleShowSearchBar(_ sender: Any) {
+
+        // Toggle the visibility of the hidden view with animation
+        UIView.animate(withDuration: 0.5) {
+            self.toggleShow(theVeiw: self.searchBar, isViewVisible: self.isSearchBarVisible, spaceConstraint: self.spaceConstraint, forHeight: self.searchBarHeight)
+        }
+        self.isSearchBarVisible = !self.isSearchBarVisible
+    }
+    
+    func toggleShow(theVeiw: UIView, isViewVisible: Bool, spaceConstraint: NSLayoutConstraint, forHeight: CGFloat){
+        
+        spaceConstraint.constant = isViewVisible ? 4 : forHeight
+        theVeiw.isHidden = isViewVisible
+        
+        self.view.layoutIfNeeded()
     }
 }
