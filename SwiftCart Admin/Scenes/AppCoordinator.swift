@@ -17,17 +17,31 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as! AuthViewController
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.authVCName) as! AuthViewController
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
     func gotoHome() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        
+        let homeVC = storyboard.instantiateViewController(withIdentifier: K.Main.homeVCName) as! HomeViewController
+        homeVC.coordinator = self
+        homeVC.viewModel = ProductViewModel(service: RemoteService())
+        homeVC.tabBarItem = UITabBarItem(title: K.Title.home, image: UIImage(systemName: K.ImageSystemName.home), tag: 0)
+
+        let couponsVC = storyboard.instantiateViewController(withIdentifier: K.Main.couponsVCName) as! CouponsViewController
+        couponsVC.coordinator = self
+        couponsVC.tabBarItem = UITabBarItem(title: K.Title.coupons, image: UIImage(systemName: K.ImageSystemName.coupons), tag: 1)
+        
+        let tabBar = UITabBarController()
+        tabBar.viewControllers = [homeVC, couponsVC]
+        if let tabBarColor = K.Assets.Color.viewBackground{
+            tabBar.tabBar.backgroundColor = tabBarColor
+        }
+        
+        navigationController.pushViewController(tabBar, animated: true)
     }
     
     func finish() {

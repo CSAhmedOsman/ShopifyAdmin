@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductImageCell" id="gTV-IL-0wX" customClass="ProductImageCell" customModule="SwiftCart_Admin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="174" height="192"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="174" height="192"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XV0-QC-9UL">
+                        <rect key="frame" x="4" y="4" width="166" height="184"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pya-vi-Zbn">
+                        <rect key="frame" x="122" y="140" width="44" height="44"/>
+                        <color key="backgroundColor" name="RedColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="KE7-fT-dJN"/>
+                            <constraint firstAttribute="width" secondItem="Pya-vi-Zbn" secondAttribute="height" multiplier="1:1" id="SC7-wU-k2N"/>
+                        </constraints>
+                        <color key="tintColor" name="TextForeground"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" cornerStyle="medium">
+                            <color key="baseForegroundColor" name="ViewBackgrond"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="deleteClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qex-02-Zug"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" name="ViewBackgrond"/>
+            <color key="tintColor" name="TextForeground"/>
+            <constraints>
+                <constraint firstItem="XV0-QC-9UL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="4mx-Gq-rvy"/>
+                <constraint firstItem="XV0-QC-9UL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="9O4-r8-9D1"/>
+                <constraint firstAttribute="bottom" secondItem="Pya-vi-Zbn" secondAttribute="bottom" constant="8" id="Fyh-uQ-Zbe"/>
+                <constraint firstAttribute="trailing" secondItem="Pya-vi-Zbn" secondAttribute="trailing" constant="8" id="GGV-9m-448"/>
+                <constraint firstAttribute="bottom" secondItem="XV0-QC-9UL" secondAttribute="bottom" constant="4" id="RB9-3C-oeF"/>
+                <constraint firstAttribute="trailing" secondItem="XV0-QC-9UL" secondAttribute="trailing" constant="4" id="n13-Xd-2lb"/>
+            </constraints>
+            <size key="customSize" width="174" height="192"/>
+            <connections>
+                <outlet property="productImage" destination="XV0-QC-9UL" id="pYt-ZY-T4b"/>
+            </connections>
+            <point key="canvasLocation" x="198.47328244274809" y="38.732394366197184"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="trash" catalog="system" width="117" height="128"/>
+        <namedColor name="RedColor">
+            <color red="0.40000000000000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextForeground">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="ViewBackgrond">
+            <color white="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+    </resources>
+</document>
