@@ -11,7 +11,7 @@ import RxAlamofire
 import Alamofire
 
 protocol Servicing {
-    func makeAPICall(method: HTTPMethod, endpoint: String, productData: Data?) -> Observable<Data>
+    func makeAPICall(method: HTTPMethod, endpoint: String, byId: Int64?, productData: Data?) -> Observable<Data>
 }
 
 class RemoteService: Servicing{
@@ -22,9 +22,15 @@ class RemoteService: Servicing{
         "Content-Type": "application/json"
     ]
     
-    func makeAPICall(method: HTTPMethod, endpoint: String, productData: Data? = nil) -> Observable<Data> {
+    func makeAPICall(method: HTTPMethod, endpoint: String, byId: Int64? = nil, productData: Data? = nil) -> Observable<Data> {
         
-        let url = baseURL + endpoint
+        var endpoint = endpoint
+        
+        if let byId{
+            endpoint = endpoint.replacingOccurrences(of: "{ItemId}", with: "\(byId)")
+        }
+        
+        var url = baseURL + endpoint
         var parameters: [String: Any]? = nil
         
         if let productData {
@@ -41,25 +47,6 @@ class RemoteService: Servicing{
             .responseData()
             .map { response, data in
                 return data
-            }
-    }
-
-    
-    func getProducts() -> Observable<[ProductDetail]> {
-        let endpoint = "products.json"
-        
-        return makeAPICall(method: .get, endpoint: endpoint)
-            .flatMap { data -> Observable<[ProductDetail]> in
-                do {
-                    let productResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
-                    if let products = productResponse.products {
-                        return Observable.just(products)
-                    } else {
-                        return Observable.error(NSError(domain: "", code: 2, userInfo: [NSLocalizedDescriptionKey: "Invalid response data"]))
-                    }
-                } catch let error {
-                    return Observable.error(error)
-                }
             }
     }
 }

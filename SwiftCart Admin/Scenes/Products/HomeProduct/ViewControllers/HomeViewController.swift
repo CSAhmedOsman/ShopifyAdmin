@@ -121,7 +121,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     func deleteCell(indexPath:IndexPath, product: ProductDetail){
         print("After call delete method with index \(indexPath.item)")
         viewModel.bindDeleteDataFromVc = { [weak self] in
-            self?.productCollection.deleteItems(at: [indexPath])
+            DispatchQueue.main.async {
+                self?.productCollection.deleteItems(at: [indexPath])
+            }
         }
         viewModel.deleteItem(at: Int64(indexPath.item))
     }

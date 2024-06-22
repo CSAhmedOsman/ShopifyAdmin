@@ -32,7 +32,7 @@ class ProductViewModel: ViewModeling {
     
     func addItem(itemData: ProductResponse?) {
         if let jsonData = Utils.encode(itemData) {
-            service.makeAPICall(method: .post, endpoint: K.Endpoint.product, productData: jsonData)
+            service.makeAPICall(method: .post, endpoint: K.Endpoint.product, byId: nil, productData: jsonData)
                 .flatMap { data -> Observable<ProductResponse> in
                     if let productResponse: ProductResponse = Utils.decode(from: data) {
                         return Observable.just(productResponse)
@@ -53,7 +53,7 @@ class ProductViewModel: ViewModeling {
     }
     
     func getAllItems() {
-        service.makeAPICall(method: .get, endpoint: K.Endpoint.product, productData: nil)
+        service.makeAPICall(method: .get, endpoint: K.Endpoint.product, byId: nil, productData: nil)
             .flatMap { data -> Observable<ProductResponse> in
                 if let productResponse: ProductResponse = Utils.decode(from: data) {
                     return Observable.just(productResponse)
@@ -71,7 +71,7 @@ class ProductViewModel: ViewModeling {
     }
     
     func getItem(byId id: Int64) {
-        service.makeAPICall(method: .get, endpoint: "\(K.Endpoint.product)/\(id).json", productData: nil)
+        service.makeAPICall(method: .get, endpoint: "\(K.Endpoint.product)/\(id).json", byId: nil, productData: nil)
             .flatMap { data -> Observable<ProductResponse> in
                 if let productResponse: ProductResponse = Utils.decode(from: data) {
                     return Observable.just(productResponse)
@@ -90,7 +90,7 @@ class ProductViewModel: ViewModeling {
     
     func updateItem(itemData: ProductResponse?) {
         if let jsonData = Utils.encode(itemData) {
-            service.makeAPICall(method: .put, endpoint: "\(K.Endpoint.product)/\(itemData?.product?.id ?? 0).json", productData: jsonData)
+            service.makeAPICall(method: .put, endpoint: K.Endpoint.product, byId: itemData?.product?.id ?? 0, productData: jsonData)
                 .flatMap { data -> Observable<ProductResponse> in
                     if let productResponse: ProductResponse = Utils.decode(from: data) {
                         return Observable.just(productResponse)
@@ -112,10 +112,9 @@ class ProductViewModel: ViewModeling {
     
     func deleteItem(at: Int64) {
         let id = productResponse?.products?[Int(at)].id ?? 0
-        let endpoint = "\(K.Endpoint.product)/\(id).json"
-        service.makeAPICall(method: .delete, endpoint: endpoint, productData: nil)
+        let endpoint = K.Endpoint.productDetail
+        service.makeAPICall(method: .delete, endpoint: endpoint, byId: id, productData: nil)
             .subscribe(onNext: { [weak self] _ in
-                self?.productResponse = nil
                 self?.productResponse?.products?.remove(at: Int(at))
                 self?.bindDeleteDataFromVc()
             }, onError: { [weak self] error in

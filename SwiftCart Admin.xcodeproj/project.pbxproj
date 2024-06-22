@@ -25,7 +25,6 @@
 		0498506F2C09F6C100F2E137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0498506E2C09F6C100F2E137 /* Assets.xcassets */; };
 		049850722C09F6C100F2E137 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049850702C09F6C100F2E137 /* LaunchScreen.storyboard */; };
 		0498507E2C09F76900F2E137 /* RemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0498507D2C09F76900F2E137 /* RemoteService.swift */; };
-		049850802C09F77400F2E137 /* Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0498507F2C09F77400F2E137 /* Local.swift */; };
 		049850832C09F78800F2E137 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049850822C09F78800F2E137 /* ProductModel.swift */; };
 		04B810BC2C1FF660005188D1 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810BB2C1FF660005188D1 /* AddProductViewController.swift */; };
 		04B810C32C21B526005188D1 /* CouponsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810C22C21B526005188D1 /* CouponsViewController.swift */; };
@@ -57,7 +56,6 @@
 		049850712C09F6C100F2E137 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		049850732C09F6C100F2E137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0498507D2C09F76900F2E137 /* RemoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteService.swift; sourceTree = "<group>"; };
-		0498507F2C09F77400F2E137 /* Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local.swift; sourceTree = "<group>"; };
 		049850822C09F78800F2E137 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		049961242C0D721F00466BA3 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		049961262C0D722000466BA3 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -182,17 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				0498507C2C09F75400F2E137 /* Remote */,
-				0498507B2C09F74C00F2E137 /* Local */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		0498507B2C09F74C00F2E137 /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				0498507F2C09F77400F2E137 /* Local.swift */,
-			);
-			path = Local;
 			sourceTree = "<group>";
 		};
 		0498507C2C09F75400F2E137 /* Remote */ = {
@@ -494,7 +483,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				049850802C09F77400F2E137 /* Local.swift in Sources */,
 				047199822C255830001FFFA6 /* PriceRuleModel.swift in Sources */,
 				04DF829E2C2318340046C3DD /* Util.swift in Sources */,
 				04DF829C2C2317A20046C3DD /* Constants.swift in Sources */,

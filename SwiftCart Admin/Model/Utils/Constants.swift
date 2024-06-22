@@ -48,7 +48,8 @@ public enum K {
     }
     
     enum Endpoint{
-        static let product = "products.json"
+        static let product = "products.json" // All Product & Add
+        static let productDetail = "products/{ItemId}.json" // Delete & Update
     }
 //    let endpoint = K.endPoints.getOrPostAddress.rawValue.replacingOccurrences(of: "{customer_id}", with: customerID)
 
