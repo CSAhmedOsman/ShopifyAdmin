@@ -32,11 +32,22 @@
 		04D1350E2C0A77DA001E27E7 /* TempCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D134FB2C0A77D8001E27E7 /* TempCoordinator.swift */; };
 		04DAA0BB2C26261D005AF4F0 /* ViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAA0BA2C26261D005AF4F0 /* ViewModeling.swift */; };
 		04DAA0C12C263A71005AF4F0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 04DAA0C02C263A71005AF4F0 /* Kingfisher */; };
+		04DAA0D62C269C26005AF4F0 /* SwiftCart_AdminTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAA0D52C269C26005AF4F0 /* SwiftCart_AdminTests.swift */; };
 		04DF82962C22449A0046C3DD /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 04DF82952C22449A0046C3DD /* RxAlamofire */; };
 		04DF82992C226C9C0046C3DD /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 04DF82982C226C9C0046C3DD /* IQKeyboardManagerSwift */; };
 		04DF829C2C2317A20046C3DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF829B2C2317A20046C3DD /* Constants.swift */; };
 		04DF829E2C2318340046C3DD /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF829D2C2318340046C3DD /* Util.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04DAA0D72C269C26005AF4F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0498505A2C09F6BF00F2E137 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 049850612C09F6BF00F2E137;
+			remoteInfo = "SwiftCart Admin";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0420004B2C0A142D00356A03 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -73,6 +84,8 @@
 		04D135192C0A7930001E27E7 /* ViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewData.swift; sourceTree = "<group>"; };
 		04D1351C2C0A7964001E27E7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		04DAA0BA2C26261D005AF4F0 /* ViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModeling.swift; sourceTree = "<group>"; };
+		04DAA0D32C269C26005AF4F0 /* SwiftCart AdminTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftCart AdminTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DAA0D52C269C26005AF4F0 /* SwiftCart_AdminTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCart_AdminTests.swift; sourceTree = "<group>"; };
 		04DF829B2C2317A20046C3DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04DF829D2C2318340046C3DD /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +99,13 @@
 				04001E612C0F3B1F00FB7030 /* Cosmos in Frameworks */,
 				04DF82962C22449A0046C3DD /* RxAlamofire in Frameworks */,
 				04DF82992C226C9C0046C3DD /* IQKeyboardManagerSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DAA0D02C269C26005AF4F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				049850642C09F6BF00F2E137 /* SwiftCart Admin */,
+				04DAA0D42C269C26005AF4F0 /* SwiftCart AdminTests */,
 				049850632C09F6BF00F2E137 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -148,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				049850622C09F6BF00F2E137 /* SwiftCart Admin.app */,
+				04DAA0D32C269C26005AF4F0 /* SwiftCart AdminTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -389,6 +411,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		04DAA0D42C269C26005AF4F0 /* SwiftCart AdminTests */ = {
+			isa = PBXGroup;
+			children = (
+				04DAA0D52C269C26005AF4F0 /* SwiftCart_AdminTests.swift */,
+			);
+			path = "SwiftCart AdminTests";
+			sourceTree = "<group>";
+		};
 		04DF829A2C2317620046C3DD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +454,24 @@
 			productReference = 049850622C09F6BF00F2E137 /* SwiftCart Admin.app */;
 			productType = "com.apple.product-type.application";
 		};
+		04DAA0D22C269C26005AF4F0 /* SwiftCart AdminTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04DAA0D92C269C26005AF4F0 /* Build configuration list for PBXNativeTarget "SwiftCart AdminTests" */;
+			buildPhases = (
+				04DAA0CF2C269C26005AF4F0 /* Sources */,
+				04DAA0D02C269C26005AF4F0 /* Frameworks */,
+				04DAA0D12C269C26005AF4F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04DAA0D82C269C26005AF4F0 /* PBXTargetDependency */,
+			);
+			name = "SwiftCart AdminTests";
+			productName = "SwiftCart AdminTests";
+			productReference = 04DAA0D32C269C26005AF4F0 /* SwiftCart AdminTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -436,6 +484,10 @@
 				TargetAttributes = {
 					049850612C09F6BF00F2E137 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					04DAA0D22C269C26005AF4F0 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 049850612C09F6BF00F2E137;
 					};
 				};
 			};
@@ -459,6 +511,7 @@
 			projectRoot = "";
 			targets = (
 				049850612C09F6BF00F2E137 /* SwiftCart Admin */,
+				04DAA0D22C269C26005AF4F0 /* SwiftCart AdminTests */,
 			);
 		};
 /* End PBXProject section */
@@ -473,6 +526,13 @@
 				0498506F2C09F6C100F2E137 /* Assets.xcassets in Resources */,
 				048E8E582C1947040010C039 /* ProductImageCell.xib in Resources */,
 				048F25F02C134F33008C4978 /* HomeCollectionViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DAA0D12C269C26005AF4F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +566,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04DAA0CF2C269C26005AF4F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04DAA0D62C269C26005AF4F0 /* SwiftCart_AdminTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04DAA0D82C269C26005AF4F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 049850612C09F6BF00F2E137 /* SwiftCart Admin */;
+			targetProxy = 04DAA0D72C269C26005AF4F0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		049850702C09F6C100F2E137 /* LaunchScreen.storyboard */ = {
@@ -691,6 +767,48 @@
 			};
 			name = Release;
 		};
+		04DAA0DA2C269C26005AF4F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iTi.SwiftCart-AdminTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftCart Admin.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftCart Admin";
+			};
+			name = Debug;
+		};
+		04DAA0DB2C269C26005AF4F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iTi.SwiftCart-AdminTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftCart Admin.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftCart Admin";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -708,6 +826,15 @@
 			buildConfigurations = (
 				049850772C09F6C100F2E137 /* Debug */,
 				049850782C09F6C100F2E137 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04DAA0D92C269C26005AF4F0 /* Build configuration list for PBXNativeTarget "SwiftCart AdminTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04DAA0DA2C269C26005AF4F0 /* Debug */,
+				04DAA0DB2C269C26005AF4F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
