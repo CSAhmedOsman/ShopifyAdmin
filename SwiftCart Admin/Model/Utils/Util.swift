@@ -14,7 +14,7 @@ public struct Utils {
             let data = try JSONEncoder().encode(value)
             return data
         } catch {
-            print(error)
+            print("Error encoding Obj: \(error)")
             return nil
         }
     }
@@ -26,7 +26,7 @@ public struct Utils {
             let decodedObject = try decoder.decode(T.self, from: data)
             return decodedObject
         } catch {
-            print(error)
+            print("Error decoding JSON: \(error)")
             return nil
         }
     }

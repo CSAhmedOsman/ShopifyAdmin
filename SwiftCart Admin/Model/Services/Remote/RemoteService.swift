@@ -11,7 +11,7 @@ import RxAlamofire
 import Alamofire
 
 protocol Servicing {
-    func makeAPICall(method: HTTPMethod, endpoint: String, byId: Int64?, productData: Data?) -> Observable<Data>
+    func makeAPICall(method: HTTPMethod, endpoint: String, byId: Int64?, itemData: Data?) -> Observable<Data>
 }
 
 class RemoteService: Servicing{
@@ -22,7 +22,7 @@ class RemoteService: Servicing{
         "Content-Type": "application/json"
     ]
     
-    func makeAPICall(method: HTTPMethod, endpoint: String, byId: Int64? = nil, productData: Data? = nil) -> Observable<Data> {
+    func makeAPICall(method: HTTPMethod, endpoint: String, byId: Int64? = nil, itemData: Data? = nil) -> Observable<Data> {
         
         var endpoint = endpoint
         
@@ -33,9 +33,9 @@ class RemoteService: Servicing{
         var url = baseURL + endpoint
         var parameters: [String: Any]? = nil
         
-        if let productData {
+        if let itemData {
             do {
-                parameters = try JSONSerialization.jsonObject(with: productData, options: []) as? [String: Any]
+                parameters = try JSONSerialization.jsonObject(with: itemData, options: []) as? [String: Any]
             } catch {
                 print("Error encoding product data")
                 return Observable.error(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Error encoding product data"]))

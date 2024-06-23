@@ -18,6 +18,9 @@ class AppCoordinator: Coordinator {
     
     func start() {
         let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        
+//        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.productDetail) as! AddProductViewController
+        
         let vc = storyboard.instantiateViewController(withIdentifier: K.Main.authVCName) as! AuthViewController
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
@@ -29,11 +32,11 @@ class AppCoordinator: Coordinator {
         let homeVC = storyboard.instantiateViewController(withIdentifier: K.Main.homeVCName) as! HomeViewController
         homeVC.coordinator = self
         homeVC.viewModel = ProductViewModel(service: RemoteService())
-        homeVC.tabBarItem = UITabBarItem(title: K.Title.home, image: UIImage(systemName: K.ImageSystemName.home), tag: 0)
+        homeVC.tabBarItem = UITabBarItem(title: K.Title.home, image: K.SystemImage.home, tag: 0)
 
         let couponsVC = storyboard.instantiateViewController(withIdentifier: K.Main.couponsVCName) as! CouponsViewController
         couponsVC.coordinator = self
-        couponsVC.tabBarItem = UITabBarItem(title: K.Title.coupons, image: UIImage(systemName: K.ImageSystemName.coupons), tag: 1)
+        couponsVC.tabBarItem = UITabBarItem(title: K.Title.coupons, image: K.SystemImage.coupons, tag: 1)
         
         let tabBar = UITabBarController()
         tabBar.viewControllers = [homeVC, couponsVC]

@@ -8,30 +8,31 @@
 import Foundation
 
 struct ProductResponse: Codable {
+    var errors: String?
+    var product: ProductDetail?
     var products: [ProductDetail]?
-    let product: ProductDetail?
 }
 
 struct ProductDetail: Codable {
-    let id: Int64?
+    var id: Int64?
 
-    let title: String?
-    let bodyHTML: String?
-    let vendor: String?
-    let productType: String?
-    let createdAt: String?
-    let handle: String?
-    let updatedAt: String?
-    let publishedAt: String?
-    let templateSuffix: String?
-    let publishedScope: String?
-    let tags: String?
-    let status: String?
-    let adminGraphqlAPIID: String?
-    let variants: [ProductVariant?]?
-    let options: [ProductOption?]?
-    let images: [ProductImage?]?
-    let image: ProductImage?
+    var title: String?
+    var bodyHTML: String?
+    var vendor: String?
+    var productType: String?
+    var createdAt: String?
+    var handle: String?
+    var updatedAt: String?
+    var publishedAt: String?
+    var templateSuffix: String?
+    var publishedScope: String?
+    var tags: String?
+    var status: String?
+    var adminGraphqlAPIID: String?
+    var variants: [ProductVariant?]?
+    var options: [ProductOption?]?
+    var images: [ProductImage?]?
+    var image: ProductImage?
  
     enum CodingKeys: String, CodingKey {
         case id, title
@@ -51,32 +52,32 @@ struct ProductDetail: Codable {
 }
 
 struct ProductVariant: Codable {
-    let id: Int64?
-    let productID: Int64?
-    let title: String?
-    let price: String?
-    let sku: String?
-    let position: Int?
-    let inventoryPolicy: String?
-    let compareAtPrice: String?
-    let fulfillmentService: String?
-    let inventoryManagement: String?
-    let option1: String?
-    let option2: String?
-    let option3: String?
-    let createdAt: String?
-    let updatedAt: String?
-    let taxable: Bool?
-    let barcode: String?
-    let grams: Int?
-    let weight: Double?
-    let weightUnit: String?
-    let inventoryItemID: Int64?
-    let inventoryQuantity: Int?
-    let oldInventoryQuantity: Int?
-    let requiresShipping: Bool?
-    let adminGraphqlAPIID: String?
-    let imageID: Int64?
+    var id: Int64?
+    var productID: Int64?
+    var title: String?
+    var price: String?
+    var sku: String?
+    var position: Int?
+    var inventoryPolicy: String?
+    var compareAtPrice: String?
+    var fulfillmentService: String?
+    var inventoryManagement: String?
+    var option1: String?
+    var option2: String?
+    var option3: String?
+    var createdAt: String?
+    var updatedAt: String?
+    var taxable: Bool?
+    var barcode: String?
+    var grams: Int?
+    var weight: Double?
+    var weightUnit: String?
+    var inventoryItemID: Int64?
+    var inventoryQuantity: Int?
+    var oldInventoryQuantity: Int?
+    var requiresShipping: Bool?
+    var adminGraphqlAPIID: String?
+    var imageID: Int64?
  
     enum CodingKeys: String, CodingKey {
         case id
@@ -101,11 +102,11 @@ struct ProductVariant: Codable {
 }
 
 struct ProductOption: Codable {
-    let id: Int64?
-    let productID: Int64?
-    let name: String?
-    let position: Int?
-    let values: [String]?
+    var id: Int64?
+    var productID: Int64?
+    var name: String?
+    var position: Int?
+    var values: [String]?
  
     enum CodingKeys: String, CodingKey {
         case id
@@ -115,17 +116,17 @@ struct ProductOption: Codable {
 }
 
 struct ProductImage: Codable {
-    let id: Int64?
-    let alt: String?
-    let position: Int?
-    let productID: Int64?
-    let createdAt: String?
-    let updatedAt: String?
-    let adminGraphqlAPIID: String?
-    let width: Int?
-    let height: Int?
-    let src: String?
-    let variantIDS: [Int64]?
+    var id: Int64?
+    var alt: String?
+    var position: Int?
+    var productID: Int64?
+    var createdAt: String?
+    var updatedAt: String?
+    var adminGraphqlAPIID: String?
+    var width: Int?
+    var height: Int?
+    var src: String?
+    var variantIDS: [Int64]?
  
     enum CodingKeys: String, CodingKey {
         case id, alt, position

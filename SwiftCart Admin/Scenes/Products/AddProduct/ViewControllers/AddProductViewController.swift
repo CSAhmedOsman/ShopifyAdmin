@@ -6,49 +6,39 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AddProductViewController: UIViewController {
 
+    weak var coordinator: AppCoordinator?
+    var viewModel: ProductViewModel!
+    private let disposeBag = DisposeBag()
+    
     @IBOutlet weak var tfProductName: UITextField!
     @IBOutlet weak var tfImageURL: UITextField!
     
     @IBOutlet weak var vendorButton: UIButton!
     @IBOutlet weak var productTypeButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setupVendorButton()
-        setupProductTypeButton()
+        setupMenuButton(options: K.Arrays.vendors, for: vendorButton)
+        setupMenuButton(options: K.Arrays.productTypes, for: productTypeButton)
     }
     
-    func setupProductTypeButton(){
-        let menuItems = [
-            UIAction(title: "Option 1", handler: { _ in self.optionSelected("Option 1") }),
-            UIAction(title: "Option 2", handler: { _ in self.optionSelected("Option 2") }),
-            UIAction(title: "Option 3", handler: { _ in self.optionSelected("Option 3") })
-        ]
-        let vendorMenu = UIMenu(title: "Options", children: menuItems)
+    private func setupMenuButton(options: [String], for button: UIButton) {
+        let menuItems = options.map { option in
+            UIAction(title: option) { _ in
+                button.setTitle(option, for: .normal)
+            }
+        }
         
-        productTypeButton.menu = vendorMenu
-        productTypeButton.showsMenuAsPrimaryAction = true
-    }
-    
-    private func setupVendorButton() {
-        let menuItems = [
-            UIAction(title: "Option 1", handler: { _ in self.optionSelected("Option 1") }),
-            UIAction(title: "Option 2", handler: { _ in self.optionSelected("Option 2") }),
-            UIAction(title: "Option 3", handler: { _ in self.optionSelected("Option 3") })
-        ]
-        let vendorMenu = UIMenu(title: "Options", children: menuItems)
+        let menu = UIMenu(title: button.titleLabel?.text ?? "Options", children: menuItems)
         
-        vendorButton.menu = vendorMenu
-        vendorButton.showsMenuAsPrimaryAction = true
+        button.menu = menu
+        button.showsMenuAsPrimaryAction = true
     }
-    
-    private func optionSelected(_ option: String) {
-        print("Selected: \(option)")
-        vendorButton.setTitle(option, for: .normal)
-    }
-
 }

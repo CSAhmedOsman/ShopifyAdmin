@@ -15,6 +15,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var productBrandName: UILabel!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
+    @IBOutlet weak var deleteBtn: UIButton!
     
     var deleteDelegate : (HomeCollectionViewCell)->() = {_ in }
     var product: ProductDetail! = nil
@@ -25,8 +26,13 @@ class HomeCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with product: ProductDetail?, deleteDelegate : @escaping (HomeCollectionViewCell)->Void){
+        
         self.deleteDelegate = deleteDelegate
         self.product = product
+        self.layer.cornerRadius = 16
+        deleteBtn.configuration?.showsActivityIndicator = false
+        deleteBtn.imageView?.image = K.SystemImage.trash
+
         productImage.kf.setImage(with: URL(string: product?.image?.src ?? ""), placeholder: K.Assets.Image.productPlaceholder)
         
         productBrandName.text = product?.vendor

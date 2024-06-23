@@ -14,12 +14,13 @@ public enum K {
         static let storyboardName = "Main"
         static let authVCName = "AuthViewController"
         static let homeVCName = "HomeViewController"
+        static let productDetail = "HomeViewController"
         static let couponsVCName = "CouponsViewController"
     }
     
     enum CustomView{
         static let emptyCell = "emptyCell"
-        static let homeProductCell = "productCell"
+        static let homeProductCellIdentifier = "productCell"
         static let homeProductCellName = "HomeCollectionViewCell"
     }
     
@@ -28,9 +29,15 @@ public enum K {
         static let coupons = "Coupons"
     }
     
-    enum ImageSystemName{
-        static let home = "house"
-        static let coupons = "tag.slash"
+    enum Arrays{
+        static let vendors = ["ADIDAS", "ASICS TIGER", "CONVERSE", "DR MARTENS", "FLEX FIT", "HERSCHEL", "NIKE", "PALLADIUM", "PUMA", "SUPRA", "TIMBERLAND", "VANS"]
+        static let productTypes = ["ACCESSORIES", "SHOES", "T-SHIRTS"]
+    }
+    
+    enum SystemImage{
+        static let home = UIImage(systemName: "house")
+        static let coupons = UIImage(systemName: "tag.slash")
+        static let trash = UIImage(systemName: "trash")
     }
     
     enum Assets{
@@ -38,6 +45,7 @@ public enum K {
             static let accentColor = UIColor(named: "AccentColor")
             static let colorBlack = UIColor(named: "ColorBlack")
             static let colorRed = UIColor(named: "ColorRed")
+            static let ColorWhite = UIColor(named: "ColorWhite")
             static let textBackground = UIColor(named: "TextBackgorund")
             static let textForeground = UIColor(named: "TextForeground")
             static let viewBackground = UIColor(named: "ViewBackgrond")

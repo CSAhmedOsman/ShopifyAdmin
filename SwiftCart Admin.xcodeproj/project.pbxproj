@@ -32,7 +32,7 @@
 		04D1350E2C0A77DA001E27E7 /* TempCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D134FB2C0A77D8001E27E7 /* TempCoordinator.swift */; };
 		04DAA0BB2C26261D005AF4F0 /* ViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAA0BA2C26261D005AF4F0 /* ViewModeling.swift */; };
 		04DAA0C12C263A71005AF4F0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 04DAA0C02C263A71005AF4F0 /* Kingfisher */; };
-		04DAA0D62C269C26005AF4F0 /* SwiftCart_AdminTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAA0D52C269C26005AF4F0 /* SwiftCart_AdminTests.swift */; };
+		04DAA0D62C269C26005AF4F0 /* RemoteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAA0D52C269C26005AF4F0 /* RemoteServiceTests.swift */; };
 		04DF82962C22449A0046C3DD /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 04DF82952C22449A0046C3DD /* RxAlamofire */; };
 		04DF82992C226C9C0046C3DD /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 04DF82982C226C9C0046C3DD /* IQKeyboardManagerSwift */; };
 		04DF829C2C2317A20046C3DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF829B2C2317A20046C3DD /* Constants.swift */; };
@@ -85,7 +85,7 @@
 		04D1351C2C0A7964001E27E7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		04DAA0BA2C26261D005AF4F0 /* ViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModeling.swift; sourceTree = "<group>"; };
 		04DAA0D32C269C26005AF4F0 /* SwiftCart AdminTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftCart AdminTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		04DAA0D52C269C26005AF4F0 /* SwiftCart_AdminTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCart_AdminTests.swift; sourceTree = "<group>"; };
+		04DAA0D52C269C26005AF4F0 /* RemoteServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteServiceTests.swift; sourceTree = "<group>"; };
 		04DF829B2C2317A20046C3DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04DF829D2C2318340046C3DD /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -414,7 +414,7 @@
 		04DAA0D42C269C26005AF4F0 /* SwiftCart AdminTests */ = {
 			isa = PBXGroup;
 			children = (
-				04DAA0D52C269C26005AF4F0 /* SwiftCart_AdminTests.swift */,
+				04DAA0D52C269C26005AF4F0 /* RemoteServiceTests.swift */,
 			);
 			path = "SwiftCart AdminTests";
 			sourceTree = "<group>";
@@ -570,7 +570,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04DAA0D62C269C26005AF4F0 /* SwiftCart_AdminTests.swift in Sources */,
+				04DAA0D62C269C26005AF4F0 /* RemoteServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
