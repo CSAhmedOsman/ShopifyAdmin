@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class AddCouponsViewController: UIViewController {
+class AddPriceRuleViewController: UIViewController {
+
+    weak var coordinator: AppCoordinator?
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()

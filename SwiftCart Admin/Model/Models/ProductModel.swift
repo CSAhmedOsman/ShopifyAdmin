@@ -28,7 +28,6 @@ struct ProductDetail: Codable {
     var publishedScope: String?
     var tags: String?
     var status: String?
-    var adminGraphqlAPIID: String?
     var variants: [ProductVariant?]?
     var options: [ProductOption?]?
     var images: [ProductImage?]?
@@ -46,7 +45,6 @@ struct ProductDetail: Codable {
         case templateSuffix = "template_suffix"
         case publishedScope = "published_scope"
         case tags, status
-        case adminGraphqlAPIID = "admin_graphql_api_id"
         case variants, options, images, image
     }
 }
@@ -76,7 +74,6 @@ struct ProductVariant: Codable {
     var inventoryQuantity: Int?
     var oldInventoryQuantity: Int?
     var requiresShipping: Bool?
-    var adminGraphqlAPIID: String?
     var imageID: Int64?
  
     enum CodingKeys: String, CodingKey {
@@ -96,7 +93,6 @@ struct ProductVariant: Codable {
         case inventoryQuantity = "inventory_quantity"
         case oldInventoryQuantity = "old_inventory_quantity"
         case requiresShipping = "requires_shipping"
-        case adminGraphqlAPIID = "admin_graphql_api_id"
         case imageID = "image_id"
     }
 }
@@ -122,7 +118,6 @@ struct ProductImage: Codable {
     var productID: Int64?
     var createdAt: String?
     var updatedAt: String?
-    var adminGraphqlAPIID: String?
     var width: Int?
     var height: Int?
     var src: String?
@@ -133,7 +128,6 @@ struct ProductImage: Codable {
         case productID = "product_id"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case adminGraphqlAPIID = "admin_graphql_api_id"
         case width, height, src
         case variantIDS = "variant_ids"
     }

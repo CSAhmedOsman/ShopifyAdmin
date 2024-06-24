@@ -14,14 +14,16 @@ public enum K {
         static let storyboardName = "Main"
         static let authVCName = "AuthViewController"
         static let homeVCName = "HomeViewController"
-        static let productDetail = "HomeViewController"
+        static let productDetail = "AddProductViewController"
+        static let priceRuleDetail = "AddPriceRuleViewController"
         static let couponsVCName = "CouponsViewController"
     }
     
     enum CustomView{
-        static let emptyCell = "emptyCell"
+        static let defaultCellIdentifier = "defaultCell"
         static let homeProductCellIdentifier = "productCell"
         static let homeProductCellName = "HomeCollectionViewCell"
+        static let addProductImageCellIdentifier = "productImageCell"
     }
     
     enum Title{
@@ -29,9 +31,16 @@ public enum K {
         static let coupons = "Coupons"
     }
     
-    enum Arrays{
-        static let vendors = ["ADIDAS", "ASICS TIGER", "CONVERSE", "DR MARTENS", "FLEX FIT", "HERSCHEL", "NIKE", "PALLADIUM", "PUMA", "SUPRA", "TIMBERLAND", "VANS"]
-        static let productTypes = ["ACCESSORIES", "SHOES", "T-SHIRTS"]
+    enum Enums{
+        enum Product{
+            static let vendors = ["ADIDAS", "ASICS TIGER", "CONVERSE", "DR MARTENS", "FLEX FIT", "HERSCHEL", "NIKE", "PALLADIUM", "PUMA", "SUPRA", "TIMBERLAND", "VANS"]
+            static let productTypes = ["ACCESSORIES", "SHOES", "T-SHIRTS"]
+        }
+        enum Coupons{
+            static let value_type = ["fixed_amount", "percentage"]
+            static let target_type = ["line_item", "shipping_line"]
+            static let allocation_method = ["each", "across"]
+        }
     }
     
     enum SystemImage{
@@ -52,6 +61,7 @@ public enum K {
         }
         enum Image{
             static let productPlaceholder = UIImage(named: "ProductPlaceholder")
+            static let PriceRulePlaceholder = UIImage(named: "PriceRulePlaceholder")
         }
     }
     

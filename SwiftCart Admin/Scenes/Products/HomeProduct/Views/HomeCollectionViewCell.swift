@@ -41,7 +41,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func deleteClick(_ sender: UIButton) {
-        print("click btn in index)")
         sender.configuration?.showsActivityIndicator = true
         deleteDelegate(self)
     }

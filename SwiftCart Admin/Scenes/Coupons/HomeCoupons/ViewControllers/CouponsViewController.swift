@@ -17,7 +17,10 @@ class CouponsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func addPriceRule(_ sender: Any) {
+        coordinator?.gotoAddPriceRule()
+    }
+    
     /*
     // MARK: - Navigation
 

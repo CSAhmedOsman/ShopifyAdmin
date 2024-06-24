@@ -25,12 +25,10 @@ class RemoteService: Servicing{
     func makeAPICall(method: HTTPMethod, endpoint: String, byId: Int64? = nil, itemData: Data? = nil) -> Observable<Data> {
         
         var endpoint = endpoint
-        
         if let byId{
             endpoint = endpoint.replacingOccurrences(of: "{ItemId}", with: "\(byId)")
         }
         
-        var url = baseURL + endpoint
         var parameters: [String: Any]? = nil
         
         if let itemData {
@@ -42,7 +40,7 @@ class RemoteService: Servicing{
             }
         }
         
-        return RxAlamofire.request(method, url, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        return RxAlamofire.request(method, baseURL + endpoint, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate(statusCode: 200..<300)
             .responseData()
             .map { response, data in

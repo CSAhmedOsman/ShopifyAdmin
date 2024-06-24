@@ -78,6 +78,10 @@ class HomeViewController: UIViewController {
     
     // MARK: - IBActions
 
+    @IBAction func addProduct(_ sender: Any) {
+        coordinator?.gotoAddProduct()
+    }
+    
     @IBAction func toggleShowSearchBar(_ sender: Any) {
         // Toggle the visibility of the hidden view with animation
         self.searchBar.isHidden = !self.searchBar.isHidden
@@ -130,7 +134,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 self?.deleteCell(indexPath: indexPath, product: cell.product)
             }
         }else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CustomView.emptyCell, for: indexPath)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CustomView.defaultCellIdentifier, for: indexPath)
         }
         
         return cell
@@ -138,13 +142,15 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
 
     func deleteCell(indexPath:IndexPath, product: ProductDetail){
         print("After call delete method with index \(indexPath.item)")
-        viewModel.bindDeleteDataFromVc = { [weak self] in
-            DispatchQueue.main.async {
-                self?.allProducts.remove(at: indexPath.item)
-                self?.productCollection.deleteItems(at: [indexPath])
+        Utils.showAlert(title: "Remove Tag", message: "Are you sure remove this tag?", preferredStyle: .alert, from: self,actions: [UIAlertAction(title: "Delete", style: .destructive){ _ in
+            self.viewModel.bindDeleteDataFromVc = { [weak self] in
+                DispatchQueue.main.async {
+                    self?.allProducts.remove(at: indexPath.item)
+                    self?.productCollection.deleteItems(at: [indexPath])
+                }
             }
-        }
-        viewModel.deleteItem(at: allProducts[indexPath.item].id ?? 0)
+            self.viewModel.deleteItem(at: product.id ?? 0)
+        },UIAlertAction(title: "Cancel", style: .cancel)])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

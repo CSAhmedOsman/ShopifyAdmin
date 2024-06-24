@@ -18,12 +18,25 @@ class AppCoordinator: Coordinator {
     
     func start() {
         let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
-        
-//        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.productDetail) as! AddProductViewController
-        
         let vc = storyboard.instantiateViewController(withIdentifier: K.Main.authVCName) as! AuthViewController
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func gotoAddPriceRule(product: ProductDetail? = nil){
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.priceRuleDetail) as! AddPriceRuleViewController
+//        vc.viewModel = ViewModel(service: RemoteService())
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func gotoAddProduct(product: ProductDetail? = nil){
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.productDetail) as! AddProductViewController
+        vc.viewModel = ProductViewModel(service: RemoteService())
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func gotoHome() {
@@ -51,33 +64,3 @@ class AppCoordinator: Coordinator {
         navigationController.popViewController(animated: true)
     }
 }
-
-
-//class AuthCoordinator: Coordinator {
-//
-//    var childCoordinators = [Coordinator]()
-//    var navigationController: UINavigationController
-//
-//    init(navigationController: UINavigationController) {
-//        self.navigationController = navigationController
-//    }
-//
-//    func start() {
-////        let vc = AuthViewControllers.instantiate()
-////        vc.coordinator = self
-////        navigationController.pushViewController(vc, animated: false)
-//    }
-//
-//    func finish() {
-//        navigationController.popViewController(animated: true)
-//    }
-//
-////    func gotoAnother() {
-////        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-////        let vc = storyboard.instantiateViewController(withIdentifier: "tab")
-////
-////        vc.coordinator = self
-////        navigationController.pushViewController(vc, animated: true)
-////    }
-//
-//}
