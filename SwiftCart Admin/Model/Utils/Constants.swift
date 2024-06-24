@@ -17,6 +17,8 @@ public enum K {
         static let productDetail = "AddProductViewController"
         static let priceRuleDetail = "AddPriceRuleViewController"
         static let couponsVCName = "CouponsViewController"
+        static let inventoryVCName = "InventoryViewController"
+        static let editQuntatyVCName = "EditQuntatyViewController"
     }
     
     enum CustomView{
@@ -29,6 +31,7 @@ public enum K {
     enum Title{
         static let home = "Home"
         static let coupons = "Coupons"
+        static let inventory = "Inventory"
     }
     
     enum Enums{
@@ -37,15 +40,16 @@ public enum K {
             static let productTypes = ["ACCESSORIES", "SHOES", "T-SHIRTS"]
         }
         enum Coupons{
-            static let value_type = ["fixed_amount", "percentage"]
-            static let target_type = ["line_item", "shipping_line"]
-            static let allocation_method = ["each", "across"]
+            static let valueType = ["fixed_amount", "percentage"]
+            static let targetType = ["line_item", "shipping_line"]
+            static let allocationMethod = ["each", "across"]
         }
     }
     
     enum SystemImage{
         static let home = UIImage(systemName: "house")
         static let coupons = UIImage(systemName: "tag.slash")
+        static let inventory = UIImage(systemName: "tray")
         static let trash = UIImage(systemName: "trash")
     }
     
@@ -66,8 +70,19 @@ public enum K {
     }
     
     enum Endpoint{
-        static let product = "products.json" // All Product & Add
-        static let productDetail = "products/{ItemId}.json" // Delete & Update
+        enum Product{
+            static let product = "products.json" // All Product & Add
+            static let productDetail = "products/{ItemId}.json" // Delete & Update
+        }
+        enum Coupons{
+            
+        }
+        enum Inventory{
+            static let locationId: Int64 = 71569309743
+            static let inventoryLevels = "locations/71569309743/inventory_levels.json"
+            static let inventoryItem = "inventory_items.json?ids={ItemId}"
+            static let setInventoryItem = "inventory_levels/set.json"
+        }
     }
 //    let endpoint = K.endPoints.getOrPostAddress.rawValue.replacingOccurrences(of: "{customer_id}", with: customerID)
 

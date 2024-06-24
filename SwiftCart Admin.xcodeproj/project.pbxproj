@@ -13,6 +13,10 @@
 		046C81032C1FE888009EE789 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C81022C1FE888009EE789 /* TempViewController.swift */; };
 		047199822C255830001FFFA6 /* PriceRuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047199812C255830001FFFA6 /* PriceRuleModel.swift */; };
 		047199852C26182C001FFFA6 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047199842C26182C001FFFA6 /* ProductViewModel.swift */; };
+		0477E0F52C294F1800610C5C /* InventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477E0F42C294F1800610C5C /* InventoryModel.swift */; };
+		0477E0FD2C295A5700610C5C /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477E0FC2C295A5700610C5C /* InventoryViewController.swift */; };
+		0477E1002C295E6B00610C5C /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477E0FF2C295E6B00610C5C /* InventoryViewModel.swift */; };
+		0477E1022C296A1600610C5C /* EditQuntatyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477E1012C296A1600610C5C /* EditQuntatyViewController.swift */; };
 		0480C8622C0D369A00629C35 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D135162C0A78B6001E27E7 /* HomeViewController.swift */; };
 		048E8E572C1947040010C039 /* ProductImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E8E552C1947040010C039 /* ProductImageCell.swift */; };
 		048E8E582C1947040010C039 /* ProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048E8E562C1947040010C039 /* ProductImageCell.xib */; };
@@ -29,7 +33,6 @@
 		04B810BC2C1FF660005188D1 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810BB2C1FF660005188D1 /* AddProductViewController.swift */; };
 		04B810C32C21B526005188D1 /* CouponsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810C22C21B526005188D1 /* CouponsViewController.swift */; };
 		04B810C62C21B5C0005188D1 /* AddPriceRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810C52C21B5C0005188D1 /* AddPriceRuleViewController.swift */; };
-		04D1350E2C0A77DA001E27E7 /* TempCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D134FB2C0A77D8001E27E7 /* TempCoordinator.swift */; };
 		04DAA0BB2C26261D005AF4F0 /* ViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAA0BA2C26261D005AF4F0 /* ViewModeling.swift */; };
 		04DAA0C12C263A71005AF4F0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 04DAA0C02C263A71005AF4F0 /* Kingfisher */; };
 		04DAA0D62C269C26005AF4F0 /* RemoteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAA0D52C269C26005AF4F0 /* RemoteServiceTests.swift */; };
@@ -55,6 +58,10 @@
 		046C81022C1FE888009EE789 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		047199812C255830001FFFA6 /* PriceRuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleModel.swift; sourceTree = "<group>"; };
 		047199842C26182C001FFFA6 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		0477E0F42C294F1800610C5C /* InventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryModel.swift; sourceTree = "<group>"; };
+		0477E0FC2C295A5700610C5C /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
+		0477E0FF2C295E6B00610C5C /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
+		0477E1012C296A1600610C5C /* EditQuntatyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuntatyViewController.swift; sourceTree = "<group>"; };
 		048E8E552C1947040010C039 /* ProductImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageCell.swift; sourceTree = "<group>"; };
 		048E8E562C1947040010C039 /* ProductImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageCell.xib; sourceTree = "<group>"; };
 		048F25ED2C134F33008C4978 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -76,13 +83,7 @@
 		04B810BB2C1FF660005188D1 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		04B810C22C21B526005188D1 /* CouponsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponsViewController.swift; sourceTree = "<group>"; };
 		04B810C52C21B5C0005188D1 /* AddPriceRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriceRuleViewController.swift; sourceTree = "<group>"; };
-		04D134FB2C0A77D8001E27E7 /* TempCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCoordinator.swift; sourceTree = "<group>"; };
-		04D135032C0A77D9001E27E7 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		04D135142C0A7838001E27E7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		04D135162C0A78B6001E27E7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		04D135172C0A78FB001E27E7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		04D135192C0A7930001E27E7 /* ViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewData.swift; sourceTree = "<group>"; };
-		04D1351C2C0A7964001E27E7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		04DAA0BA2C26261D005AF4F0 /* ViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModeling.swift; sourceTree = "<group>"; };
 		04DAA0D32C269C26005AF4F0 /* SwiftCart AdminTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftCart AdminTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DAA0D52C269C26005AF4F0 /* RemoteServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteServiceTests.swift; sourceTree = "<group>"; };
@@ -116,6 +117,32 @@
 			isa = PBXGroup;
 			children = (
 				047199842C26182C001FFFA6 /* ProductViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0477E0F62C2956E900610C5C /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				0477E0FE2C295E4C00610C5C /* ViewModel */,
+				0477E0FB2C295A3E00610C5C /* ViewController */,
+			);
+			path = Inventory;
+			sourceTree = "<group>";
+		};
+		0477E0FB2C295A3E00610C5C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0477E0FC2C295A5700610C5C /* InventoryViewController.swift */,
+				0477E1012C296A1600610C5C /* EditQuntatyViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0477E0FE2C295E4C00610C5C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0477E0FF2C295E6B00610C5C /* InventoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -219,6 +246,7 @@
 			children = (
 				049850822C09F78800F2E137 /* ProductModel.swift */,
 				047199812C255830001FFFA6 /* PriceRuleModel.swift */,
+				0477E0F42C294F1800610C5C /* InventoryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,62 +262,9 @@
 				049961212C0D71DE00466BA3 /* Autantication */,
 				048E8E4F2C18818C0010C039 /* Products */,
 				04B810BD2C21B490005188D1 /* Coupons */,
-				049850852C09F7B500F2E137 /* Temp */,
+				0477E0F62C2956E900610C5C /* Inventory */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		049850852C09F7B500F2E137 /* Temp */ = {
-			isa = PBXGroup;
-			children = (
-				04D134FB2C0A77D8001E27E7 /* TempCoordinator.swift */,
-				049850952C09F7F600F2E137 /* Views */,
-				0498509B2C09F7F600F2E137 /* ViewControllers */,
-				0498509D2C09F7F600F2E137 /* ViewModels */,
-				049850992C09F7F600F2E137 /* ViewDatas */,
-				049850972C09F7F600F2E137 /* Models */,
-			);
-			path = Temp;
-			sourceTree = "<group>";
-		};
-		049850952C09F7F600F2E137 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				04D135142C0A7838001E27E7 /* View.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		049850972C09F7F600F2E137 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				04D1351C2C0A7964001E27E7 /* Model.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		049850992C09F7F600F2E137 /* ViewDatas */ = {
-			isa = PBXGroup;
-			children = (
-				04D135192C0A7930001E27E7 /* ViewData.swift */,
-			);
-			path = ViewDatas;
-			sourceTree = "<group>";
-		};
-		0498509B2C09F7F600F2E137 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				04D135032C0A77D9001E27E7 /* Controller.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		0498509D2C09F7F600F2E137 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				04D135172C0A78FB001E27E7 /* ViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		049961212C0D71DE00466BA3 /* Autantication */ = {
@@ -544,17 +519,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				047199822C255830001FFFA6 /* PriceRuleModel.swift in Sources */,
+				0477E1022C296A1600610C5C /* EditQuntatyViewController.swift in Sources */,
 				04DF829E2C2318340046C3DD /* Util.swift in Sources */,
 				04DF829C2C2317A20046C3DD /* Constants.swift in Sources */,
 				049850662C09F6BF00F2E137 /* AppDelegate.swift in Sources */,
 				04B810C32C21B526005188D1 /* CouponsViewController.swift in Sources */,
 				049850832C09F78800F2E137 /* ProductModel.swift in Sources */,
-				04D1350E2C0A77DA001E27E7 /* TempCoordinator.swift in Sources */,
 				04DAA0BB2C26261D005AF4F0 /* ViewModeling.swift in Sources */,
+				0477E0FD2C295A5700610C5C /* InventoryViewController.swift in Sources */,
 				0420004F2C0A6C7900356A03 /* AppCoordinator.swift in Sources */,
+				0477E0F52C294F1800610C5C /* InventoryModel.swift in Sources */,
 				048E8E572C1947040010C039 /* ProductImageCell.swift in Sources */,
 				046C81032C1FE888009EE789 /* TempViewController.swift in Sources */,
 				04B810C62C21B5C0005188D1 /* AddPriceRuleViewController.swift in Sources */,
+				0477E1002C295E6B00610C5C /* InventoryViewModel.swift in Sources */,
 				048FC06A2C0DB2DA003C293D /* AuthViewController.swift in Sources */,
 				04B810BC2C1FF660005188D1 /* AddProductViewController.swift in Sources */,
 				047199852C26182C001FFFA6 /* ProductViewModel.swift in Sources */,

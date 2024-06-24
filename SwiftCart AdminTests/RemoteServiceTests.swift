@@ -31,7 +31,7 @@ class RemoteServiceTests: XCTestCase {
         let expectation = self.expectation(description: "API call succeeds")
         
         // Act
-        let result = service.makeAPICall(method: .get, endpoint: K.Endpoint.productDetail, byId: 7680318832687, itemData: nil)
+        let result = service.makeAPICall(method: .get, endpoint: K.Endpoint.Product.productDetail, byId: 7680318832687, itemData: nil)
         
         // Assert
         result.subscribe { data in
@@ -53,7 +53,7 @@ class RemoteServiceTests: XCTestCase {
         let expectation = self.expectation(description: "API call succeeds")
         
         // Act
-        let result = service.makeAPICall(method: .get, endpoint: K.Endpoint.productDetail, byId: 0, itemData: nil)
+        let result = service.makeAPICall(method: .get, endpoint: K.Endpoint.Product.productDetail, byId: 0, itemData: nil)
         
         // Assert
         result.subscribe { data in
@@ -72,7 +72,7 @@ class RemoteServiceTests: XCTestCase {
         let expectation = self.expectation(description: "API call succeeds")
         
         // Act
-        let result = service.makeAPICall(method: .get, endpoint: K.Endpoint.product, byId: nil, itemData: nil)
+        let result = service.makeAPICall(method: .get, endpoint: K.Endpoint.Product.product, byId: nil, itemData: nil)
         
         // Assert
         result.subscribe { data in
@@ -99,7 +99,7 @@ class RemoteServiceTests: XCTestCase {
         let productData = Utils.encode(productRequest)
         
         // Act
-        let result = service.makeAPICall(method: .post, endpoint: K.Endpoint.product, byId: nil, itemData: productData)
+        let result = service.makeAPICall(method: .post, endpoint: K.Endpoint.Product.product, byId: nil, itemData: productData)
         
         // Assert
         result.subscribe { data in
@@ -118,7 +118,7 @@ class RemoteServiceTests: XCTestCase {
         let expectation = self.expectation(description: "API call succeeds")
 
         // Act
-        let result = service.makeAPICall(method: .delete, endpoint: K.Endpoint.productDetail, byId: 7740094611503, itemData: nil)
+        let result = service.makeAPICall(method: .delete, endpoint: K.Endpoint.Product.productDetail, byId: 7740094611503, itemData: nil)
         
         // Assert
         result.subscribe { data in
