@@ -17,17 +17,17 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        gotoAuth()
+        
+        let defaults = UserDefaults.standard
+        let isLogined = defaults.bool(forKey: K.Enums.Auth.userStatus)
+        
         navigationController.navigationBar.isHidden = true
         
-//        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
-//
-//        let priceRulesVC = storyboard.instantiateViewController(withIdentifier: K.Main.priceRulesVCName) as! PriceRulesViewController
-//        priceRulesVC.coordinator = self
-//        priceRulesVC.viewModel = PriceRulesViewModel(service: RemoteService())
-//
-//        navigationController.pushViewController(priceRulesVC, animated: true)
-
+        if isLogined{
+            gotoHome()
+        } else {
+            gotoAuth()
+        }
     }
     
     func gotoAuth(){

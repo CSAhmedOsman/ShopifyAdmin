@@ -17,6 +17,14 @@ struct DiscountCodeResponse: Codable {
     }
 }
 
+struct DiscountCodeRequest: Codable {
+    var discountCode: DiscountCode
+
+    enum CodingKeys: String, CodingKey {
+        case discountCode = "discount_code"
+    }
+}
+
 struct DiscountCode: Codable {
     var id: Int64?
     var priceRuleId: Int64?

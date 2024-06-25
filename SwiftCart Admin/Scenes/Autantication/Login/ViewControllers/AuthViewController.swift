@@ -29,6 +29,10 @@ class AuthViewController: UIViewController {
             switch result{
             case .success(_):
                 DispatchQueue.main.async {
+                    
+                    let defaults = UserDefaults.standard
+                    defaults.set(true, forKey: K.Enums.Auth.userStatus)
+
                     self?.email.text = ""
                     self?.password.text = ""
                     self?.coordinator?.gotoHome()

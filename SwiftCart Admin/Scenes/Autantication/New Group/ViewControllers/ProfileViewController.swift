@@ -22,6 +22,9 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func logout(_ sender: UIButton) {
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: K.Enums.Auth.userStatus)
+
         coordinator?.logout()
     }
 }

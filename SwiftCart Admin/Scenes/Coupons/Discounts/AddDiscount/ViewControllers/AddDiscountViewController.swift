@@ -25,7 +25,7 @@ class AddDiscountViewController: UIViewController {
     
     @IBAction func goBack(_ sender: UIButton) {
         if sender.tag == 5{
-            bindDataToBackScreen(value)
+            bindDataToBackScreen(tfDiscountCode.text ?? "")
         }
         
         self.dismiss(animated: true)

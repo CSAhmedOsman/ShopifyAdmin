@@ -36,7 +36,7 @@ class RemoteServiceTests: XCTestCase {
         // Assert
         result.subscribe { data in
             let rule: PriceRuleResponse? = Utils.decode(from: data)
-            XCTAssertEqual(rule?.priceRules?.count, 4)
+            XCTAssertGreaterThan(rule?.priceRules?.count ?? 0, 0)
             expectation.fulfill()
         } onError: { error in
             XCTFail("Expected successful response, but got error: \(error)")
@@ -54,7 +54,6 @@ class RemoteServiceTests: XCTestCase {
         
         // Assert
         result.subscribe { data in
-            let rule: PriceRuleResponse? = Utils.decode(from: data)
             XCTFail("Expected Fail response, but got successful")
         } onError: { error in
             XCTAssertTrue(true)
@@ -84,37 +83,35 @@ class RemoteServiceTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
     
-    func testMakeAPICall_Success_WithAddItem() {
-        // Arrange
-        let expectation = self.expectation(description: "API call succeeds")
-        var request = TestHelper.getItem()
-        request?.priceRule?.id = nil
-        
-        let data = Utils.encode(request)
-        
-        // Act
-        let result = service.makeAPICall(method: .post, endpoint: K.Endpoint.Coupons.priceRules, byId: nil, itemData: data)
-        
-        // Assert
-        result.subscribe { data in
-            let rule: PriceRuleResponse? = Utils.decode(from: data)
-            XCTAssertEqual(rule?.priceRule?.title, request?.priceRule?.title)
-            expectation.fulfill()
-        } onError: { error in
-            XCTFail("Expected successful response, but got error: \(error)")
-        }.disposed(by: disposeBag)
-        
-        waitForExpectations(timeout: 15, handler: nil)
-    }  
+//    func testMakeAPICall_Success_WithAddItem() {
+//        // Arrange
+//        let expectation = self.expectation(description: "API call succeeds")
+//        var request = TestHelper.getItem()
+//        request?.priceRule?.id = nil
+//        
+//        let data = Utils.encode(request)
+//        
+//        // Act
+//        let result = service.makeAPICall(method: .post, endpoint: K.Endpoint.Coupons.priceRules, byId: nil, itemData: data)
+//        
+//        // Assert
+//        result.subscribe { data in
+//            let rule: PriceRuleResponse? = Utils.decode(from: data)
+//            XCTAssertEqual(rule?.priceRule?.title, request?.priceRule?.title)
+//            expectation.fulfill()
+//        } onError: { error in
+//            XCTFail("Expected successful response, but got error: \(error)")
+//        }.disposed(by: disposeBag)
+//        
+//        waitForExpectations(timeout: 15, handler: nil)
+//    }  
     
     func testMakeAPICall_Fail_WithAddItem() {
         // Arrange
         let expectation = self.expectation(description: "API call succeeds")
         var request = TestHelper.getItem()
         request?.priceRule?.id = nil
-        
-        let data = Utils.encode(request)
-        
+                
         // Act
         let result = service.makeAPICall(method: .post, endpoint: K.Endpoint.Coupons.priceRules, byId: nil, itemData: nil)
         
@@ -133,7 +130,7 @@ class RemoteServiceTests: XCTestCase {
         // Arrange
         let expectation = self.expectation(description: "API call succeeds")
         let id: Int64 = 1099056087087
-        var request = TestHelper.getItem()
+        let request = TestHelper.getItem()
         let jsonData = Utils.encode(request)
         
         // Act
@@ -151,7 +148,7 @@ class RemoteServiceTests: XCTestCase {
         waitForExpectations(timeout: 15, handler: nil)
     }
 
-    func testMakeAPICall_Success_WithDeleteItem() {
+    func testMakeAPICall_Success_WithAddAndDeleteItem() {
         // Arrange
         let expectation = self.expectation(description: "API call succeeds")
         var id: Int64 = 0

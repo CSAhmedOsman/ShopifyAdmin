@@ -1586,7 +1586,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Launching" id="4iv-c1-P3w">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="InventoryItem" id="4iv-c1-P3w">
                                                     <rect key="frame" x="20" y="0.0" width="65.666666666666686" height="65.666666666666671"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -1732,6 +1732,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="C1b-2g-ktH"/>
+                                    <constraint firstAttribute="width" secondItem="9cX-ve-ehD" secondAttribute="height" multiplier="1:1" id="cAJ-Q7-Sjy"/>
                                     <constraint firstAttribute="width" secondItem="9cX-ve-ehD" secondAttribute="height" multiplier="1:1" id="ies-vE-GT4"/>
                                 </constraints>
                                 <color key="tintColor" name="ColorBlack"/>
@@ -1760,7 +1761,6 @@
                             <constraint firstItem="Nh0-gW-10M" firstAttribute="leading" secondItem="JWG-hs-kBq" secondAttribute="leading" id="Xeh-bN-oJM"/>
                             <constraint firstItem="9cX-ve-ehD" firstAttribute="top" secondItem="keQ-OV-ora" secondAttribute="top" id="ZYu-ul-Ihz"/>
                             <constraint firstItem="Nh0-gW-10M" firstAttribute="top" secondItem="JWG-hs-kBq" secondAttribute="top" id="bsf-0c-lNT"/>
-                            <constraint firstItem="9cX-ve-ehD" firstAttribute="width" secondItem="9cX-ve-ehD" secondAttribute="height" multiplier="1:1" id="cAJ-Q7-Sjy"/>
                             <constraint firstItem="keQ-OV-ora" firstAttribute="trailing" secondItem="JWG-hs-kBq" secondAttribute="trailing" constant="8" id="emU-Se-4yn"/>
                             <constraint firstItem="keQ-OV-ora" firstAttribute="bottom" secondItem="JWG-hs-kBq" secondAttribute="bottom" constant="8" id="hms-ds-BbF"/>
                             <constraint firstItem="P8a-XY-aw7" firstAttribute="height" secondItem="781-wP-45b" secondAttribute="height" id="mgh-Ow-zzU"/>
@@ -2191,7 +2191,7 @@
     <color key="tintColor" name="AccentColor"/>
     <resources>
         <image name="DiscountPlaceholder" width="512" height="512"/>
-        <image name="Launching" width="1024" height="1024"/>
+        <image name="InventoryItem" width="512" height="512"/>
         <image name="PriceRulePlaceholder" width="256" height="256"/>
         <image name="ProductPlaceholder" width="1920" height="910"/>
         <image name="Team" width="2000" height="2000"/>
@@ -2208,7 +2208,7 @@
         <image name="square.and.pencil" catalog="system" width="128" height="121"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="AccentColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorBlack">
             <color red="0.12999999523162842" green="0.12999999523162842" blue="0.12999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

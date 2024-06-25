@@ -34,13 +34,9 @@ class DiscountViewController: UIViewController {
         setupViewModel()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.getAllItems()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        viewModel.getAllItems()
         searchBarHeight = searchBar.frame.height + 8
     }
     

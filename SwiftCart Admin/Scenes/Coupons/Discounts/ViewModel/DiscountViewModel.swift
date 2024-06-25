@@ -54,10 +54,10 @@ class DiscountViewModel{
         let request = DiscountCodeResponse(discountCode: itemData)
         print("priceRuleId: \(priceRuleId)")
         if let jsonData = Utils.encode(request) {
-            service.makeAPICall(method: .post, endpoint: K.Endpoint.Coupons.discountCodes.replacingOccurrences(of: "{ItemId}", with: "\(priceRuleId)"), byId: nil, itemData: jsonData)
+            service.makeAPICall(method: .post, endpoint: K.Endpoint.Coupons.discountCodes, byId: priceRuleId, itemData: jsonData)
                 .flatMap { data -> Observable<DiscountCodeResponse> in
-                    if let DiscountCodeResponse: DiscountCodeResponse = Utils.decode(from: data) {
-                        return Observable.just(DiscountCodeResponse)
+                    if let discountCodeResponse: DiscountCodeResponse = Utils.decode(from: data) {
+                        return Observable.just(discountCodeResponse)
                     } else {
                         return Observable.error(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to decode data response"]))
                     }
