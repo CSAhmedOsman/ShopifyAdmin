@@ -10,6 +10,7 @@ import Foundation
 struct PriceRuleResponse: Codable {
     var priceRule: PriceRule?
     var priceRules: [PriceRule]?
+    
     enum CodingKeys: String, CodingKey {
         case priceRule = "price_rule"
         case priceRules = "price_rules"

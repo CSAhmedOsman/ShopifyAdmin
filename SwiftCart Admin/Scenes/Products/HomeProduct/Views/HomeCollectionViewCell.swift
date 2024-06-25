@@ -17,7 +17,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var deleteBtn: UIButton!
     
-    var deleteDelegate : (HomeCollectionViewCell)->() = {_ in }
+    var deleteDelegate : (HomeCollectionViewCell, @escaping () -> ()) -> () = {_,_  in }
     var product: ProductDetail! = nil
     
     override func awakeFromNib() {
@@ -25,7 +25,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(with product: ProductDetail?, deleteDelegate : @escaping (HomeCollectionViewCell)->Void){
+    func configure(with product: ProductDetail?, deleteDelegate : @escaping (HomeCollectionViewCell, @escaping () -> ()) -> ()){
         
         self.deleteDelegate = deleteDelegate
         self.product = product
@@ -42,7 +42,12 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     @IBAction func deleteClick(_ sender: UIButton) {
         sender.configuration?.showsActivityIndicator = true
-        deleteDelegate(self)
+        sender.isEnabled = false
+        deleteDelegate(self){
+            sender.configuration?.showsActivityIndicator = false
+            sender.isEnabled = true
+//            deleteBtn.imageView?.image = K.SystemImage.trash
+        }
     }
 
 }

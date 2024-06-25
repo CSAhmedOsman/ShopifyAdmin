@@ -1,34 +1,34 @@
 //
-//  InventoryViewController.swift
+//  CouponsViewController.swift
 //  SwiftCart Admin
 //
-//  Created by Mac on 24/06/2024.
+//  Created by Mac on 18/06/2024.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class InventoryViewController: UIViewController {
+class PriceRulesViewController: UIViewController {
 
     weak var coordinator: AppCoordinator?
-    var viewModel: InventoryViewModel!
+    var viewModel: PriceRulesViewModel!
     private let disposeBag = DisposeBag()
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var spaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak var inventoryLevelsTable: UITableView!
+    @IBOutlet weak var dataTable: UITableView!
     @IBOutlet weak var imageNoData: UIImageView!
 
-    private var allInventoryLevels: [InventoryLevel] = []
+    private let refreshControl = UIRefreshControl()
+
+    private var allPriceRules: [PriceRule] = []
 
     var searchBarHeight: CGFloat = 4
     
-    private let refreshControl = UIRefreshControl()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupTableView()
         setupSearchView()
         setupViewModel()
@@ -46,24 +46,24 @@ class InventoryViewController: UIViewController {
     
     // MARK: - Setup Methods
     
+    func setupTableView(){
+        dataTable.delegate = self
+        dataTable.dataSource = self
+        
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        dataTable.addSubview(refreshControl)
+    }
+    
     func setupSearchView(){
         searchBar.delegate = self
         searchBar.isHidden = true
     }
     
-    private func setupTableView() {
-        inventoryLevelsTable.delegate = self
-        inventoryLevelsTable.dataSource = self
-        
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        inventoryLevelsTable.addSubview(refreshControl)
-    }
-    
     private func setupViewModel() {
         // Bind product data to collection view using RxSwift
         viewModel.bindDataToVc = { [weak self] in
-            self?.allInventoryLevels = self?.viewModel.inventoryLevelResponse?.inventoryLevels ?? []
-            self?.inventoryLevelsTable.reloadData()
+            self?.allPriceRules = self?.viewModel.priceRuleResponse?.priceRules ?? []
+            self?.dataTable.reloadData()
         }
         
         // Handle errors
@@ -76,6 +76,10 @@ class InventoryViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    @IBAction func addPriceRule(_ sender: Any) {
+        coordinator?.gotoAddPriceRule()
+    }
+    
     @IBAction func toggleShowSearchBar(_ sender: Any) {
         // Toggle the visibility of the hidden view with animation
         self.searchBar.isHidden = !self.searchBar.isHidden
@@ -84,8 +88,13 @@ class InventoryViewController: UIViewController {
         }
     }
     
-    // MARK: - Helper Methods
+    @IBAction func editPriceRule(_ sender: UIButton) {
+        guard let cell = sender.superview?.superview as? UITableViewCell, let indexPath = dataTable.indexPath(for: cell) else{ return }
+        coordinator?.gotoAddPriceRule(priceRule: allPriceRules[indexPath.item])
+    }
     
+    // MARK: - Helper Methods
+
     func toggleShow(theVeiw: UIView, isViewVisible: Bool, spaceConstraint: NSLayoutConstraint, forHeight: CGFloat){
         
         spaceConstraint.constant = isViewVisible ? 4 : forHeight
@@ -102,31 +111,30 @@ class InventoryViewController: UIViewController {
 
 // MARK: - UISearchBarDelegate
 
-extension InventoryViewController: UISearchBarDelegate{
+extension PriceRulesViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            allInventoryLevels = viewModel.inventoryLevelResponse?.inventoryLevels ?? []
+            allPriceRules = viewModel.priceRuleResponse?.priceRules ?? []
         } else {
-            allInventoryLevels = (viewModel.inventoryLevelResponse?.inventoryLevels ?? []).filter { "\($0.inventoryItemId)".contains(searchText) }
+            allPriceRules = (viewModel.priceRuleResponse?.priceRules ?? []).filter { $0.title?.lowercased().contains(searchText.lowercased()) ?? false }
         }
-        inventoryLevelsTable.reloadData()
+        dataTable.reloadData()
     }
 }
 
 // MARK: - UISearchBarDelegate
 
-extension InventoryViewController: UITableViewDelegate,UITableViewDataSource{
+extension PriceRulesViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = allInventoryLevels.count
+        let count = allPriceRules.count
         imageNoData.isHidden = count > 0
         return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.CustomView.defaultCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.CustomView.defaultCellIdentifier, for: indexPath) as! PriceRuleTableViewCell
         
-        cell.textLabel?.text = "Item Id: \(allInventoryLevels[indexPath.item].inventoryItemId)"
-        cell.detailTextLabel?.text = "Quantaty \(allInventoryLevels[indexPath.item].available ?? 0)"
+        cell.configuration(for: allPriceRules[indexPath.item])
         
         cell.layer.cornerRadius = 12
         
@@ -134,23 +142,18 @@ extension InventoryViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: K.Main.editQuntatyVCName) as? EditQuntatyViewController else { return }
-        
-        let value = allInventoryLevels[indexPath.item].available ?? 0
-        vc.value = value
-        vc.bindDataToInventoryScreen = { newValue in
-            if newValue != value{
-                var inventory = self.allInventoryLevels[indexPath.item]
-                inventory.available = newValue
-                self.viewModel.updateItem(itemData: inventory)
-                self.allInventoryLevels[indexPath.item] = inventory
-                self.inventoryLevelsTable.reloadData()
-            }
-        }
-        self.present(vc, animated: true)
+        coordinator?.gotoAddPriceRule(priceRule: allPriceRules[indexPath.item])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 68
+        return 136
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            coordinator?.gotoAddPriceRule(priceRule: allPriceRules[indexPath.item])
+        } else if editingStyle == .insert{
+            coordinator?.gotoAddPriceRule(priceRule: allPriceRules[indexPath.item])
+        }
     }
 }

@@ -21,6 +21,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var productCollection: UICollectionView!
     @IBOutlet weak var imageNoData: UIImageView!
     
+    private let refreshControl = UIRefreshControl()
+
     private var allProducts: [ProductDetail] = []
     
     var searchBarHeight: CGFloat = 4
@@ -60,6 +62,9 @@ class HomeViewController: UIViewController {
         
         productCollection.delegate = self
         productCollection.dataSource = self
+        
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        productCollection.addSubview(refreshControl)
     }
     
     private func setupViewModel() {
@@ -102,6 +107,11 @@ class HomeViewController: UIViewController {
         
         self.view.layoutIfNeeded()
     }
+    
+    @objc func refreshData(){
+        refreshControl.endRefreshing()
+        viewModel.getAllItems()
+    }
 }
 
 
@@ -131,10 +141,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CustomView.homeProductCellIdentifier, for: indexPath)
         
         if let cell = cell as? HomeCollectionViewCell{
-            cell.configure(with: allProducts[indexPath.item]){ [weak self] cell in
+            cell.configure(with: allProducts[indexPath.item]){ [weak self] cell, completion  in
                 let indexPath = (self?.productCollection.indexPath(for: cell))!
                 print("before call delete method with index \(indexPath)")
-                self?.deleteCell(indexPath: indexPath, product: cell.product)
+                self?.deleteCell(indexPath: indexPath, product: cell.product, complation: completion)
             }
         }else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CustomView.defaultCellIdentifier, for: indexPath)
@@ -143,17 +153,20 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         return cell
     }
 
-    func deleteCell(indexPath:IndexPath, product: ProductDetail){
+    func deleteCell(indexPath:IndexPath, product: ProductDetail, complation: @escaping () -> ()){
         print("After call delete method with index \(indexPath.item)")
-        Utils.showAlert(title: "Remove Tag", message: "Are you sure remove this tag?", preferredStyle: .alert, from: self,actions: [UIAlertAction(title: "Delete", style: .destructive){ _ in
+        Utils.showAlert(title: "Remove Product", message: "Are you sure remove this Product?", preferredStyle: .alert, from: self,actions: [UIAlertAction(title: "Delete", style: .destructive){ _ in
             self.viewModel.bindDeleteDataFromVc = { [weak self] in
                 DispatchQueue.main.async {
                     self?.allProducts.remove(at: indexPath.item)
                     self?.productCollection.deleteItems(at: [indexPath])
+                    complation()
                 }
             }
             self.viewModel.deleteItem(at: product.id ?? 0)
-        },UIAlertAction(title: "Cancel", style: .cancel)])
+        },UIAlertAction(title: "Cancel", style: .cancel,handler: { _ in
+            complation()
+        })])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -10,6 +10,9 @@
 		04001E612C0F3B1F00FB7030 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 04001E602C0F3B1F00FB7030 /* Cosmos */; };
 		0420004C2C0A142D00356A03 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420004B2C0A142D00356A03 /* Coordinator.swift */; };
 		0420004F2C0A6C7900356A03 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420004E2C0A6C7900356A03 /* AppCoordinator.swift */; };
+		046841242C2991A500E0DA48 /* PriceRulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046841232C2991A500E0DA48 /* PriceRulesViewModel.swift */; };
+		046841272C29AD3C00E0DA48 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 046841262C29AD3C00E0DA48 /* FirebaseAuth */; };
+		046841292C29AD3C00E0DA48 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 046841282C29AD3C00E0DA48 /* FirebaseFirestore */; };
 		046C81032C1FE888009EE789 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C81022C1FE888009EE789 /* TempViewController.swift */; };
 		047199822C255830001FFFA6 /* PriceRuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047199812C255830001FFFA6 /* PriceRuleModel.swift */; };
 		047199852C26182C001FFFA6 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047199842C26182C001FFFA6 /* ProductViewModel.swift */; };
@@ -31,7 +34,7 @@
 		0498507E2C09F76900F2E137 /* RemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0498507D2C09F76900F2E137 /* RemoteService.swift */; };
 		049850832C09F78800F2E137 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049850822C09F78800F2E137 /* ProductModel.swift */; };
 		04B810BC2C1FF660005188D1 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810BB2C1FF660005188D1 /* AddProductViewController.swift */; };
-		04B810C32C21B526005188D1 /* CouponsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810C22C21B526005188D1 /* CouponsViewController.swift */; };
+		04B810C32C21B526005188D1 /* PriceRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810C22C21B526005188D1 /* PriceRulesViewController.swift */; };
 		04B810C62C21B5C0005188D1 /* AddPriceRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B810C52C21B5C0005188D1 /* AddPriceRuleViewController.swift */; };
 		04DAA0BB2C26261D005AF4F0 /* ViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAA0BA2C26261D005AF4F0 /* ViewModeling.swift */; };
 		04DAA0C12C263A71005AF4F0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 04DAA0C02C263A71005AF4F0 /* Kingfisher */; };
@@ -40,6 +43,9 @@
 		04DF82992C226C9C0046C3DD /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 04DF82982C226C9C0046C3DD /* IQKeyboardManagerSwift */; };
 		04DF829C2C2317A20046C3DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF829B2C2317A20046C3DD /* Constants.swift */; };
 		04DF829E2C2318340046C3DD /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF829D2C2318340046C3DD /* Util.swift */; };
+		04DFFB962C2A3C9200DE36C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0468412A2C29AF8D00E0DA48 /* GoogleService-Info.plist */; };
+		04E42CD52C2A0D8300EB7AED /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049961262C0D722000466BA3 /* AuthViewModel.swift */; };
+		04E42CD82C2A276100EB7AED /* PriceRuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E42CD72C2A276100EB7AED /* PriceRuleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,8 @@
 /* Begin PBXFileReference section */
 		0420004B2C0A142D00356A03 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		0420004E2C0A6C7900356A03 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		046841232C2991A500E0DA48 /* PriceRulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRulesViewModel.swift; sourceTree = "<group>"; };
+		0468412A2C29AF8D00E0DA48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		046C81022C1FE888009EE789 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		047199812C255830001FFFA6 /* PriceRuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleModel.swift; sourceTree = "<group>"; };
 		047199842C26182C001FFFA6 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
@@ -77,11 +85,8 @@
 		049850822C09F78800F2E137 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		049961242C0D721F00466BA3 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		049961262C0D722000466BA3 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		049961282C0D722000466BA3 /* AuthViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewData.swift; sourceTree = "<group>"; };
-		0499612A2C0D722000466BA3 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		0499612C2C0D722100466BA3 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		04B810BB2C1FF660005188D1 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
-		04B810C22C21B526005188D1 /* CouponsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponsViewController.swift; sourceTree = "<group>"; };
+		04B810C22C21B526005188D1 /* PriceRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRulesViewController.swift; sourceTree = "<group>"; };
 		04B810C52C21B5C0005188D1 /* AddPriceRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriceRuleViewController.swift; sourceTree = "<group>"; };
 		04D135162C0A78B6001E27E7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		04DAA0BA2C26261D005AF4F0 /* ViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModeling.swift; sourceTree = "<group>"; };
@@ -89,6 +94,7 @@
 		04DAA0D52C269C26005AF4F0 /* RemoteServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteServiceTests.swift; sourceTree = "<group>"; };
 		04DF829B2C2317A20046C3DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04DF829D2C2318340046C3DD /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		04E42CD72C2A276100EB7AED /* PriceRuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +103,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DAA0C12C263A71005AF4F0 /* Kingfisher in Frameworks */,
+				046841272C29AD3C00E0DA48 /* FirebaseAuth in Frameworks */,
 				04001E612C0F3B1F00FB7030 /* Cosmos in Frameworks */,
 				04DF82962C22449A0046C3DD /* RxAlamofire in Frameworks */,
 				04DF82992C226C9C0046C3DD /* IQKeyboardManagerSwift in Frameworks */,
+				046841292C29AD3C00E0DA48 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +121,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		046841222C29917F00E0DA48 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				046841232C2991A500E0DA48 /* PriceRulesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		047199832C261801001FFFA6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +227,7 @@
 				046C81022C1FE888009EE789 /* TempViewController.swift */,
 				0498506E2C09F6C100F2E137 /* Assets.xcassets */,
 				049850732C09F6C100F2E137 /* Info.plist */,
+				0468412A2C29AF8D00E0DA48 /* GoogleService-Info.plist */,
 			);
 			path = "SwiftCart Admin";
 			sourceTree = "<group>";
@@ -270,11 +287,8 @@
 		049961212C0D71DE00466BA3 /* Autantication */ = {
 			isa = PBXGroup;
 			children = (
-				049961292C0D722000466BA3 /* Views */,
 				049961232C0D721F00466BA3 /* ViewControllers */,
 				049961252C0D721F00466BA3 /* ViewModels */,
-				049961272C0D722000466BA3 /* ViewDatas */,
-				0499612B2C0D722100466BA3 /* Models */,
 			);
 			path = Autantication;
 			sourceTree = "<group>";
@@ -295,59 +309,37 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		049961272C0D722000466BA3 /* ViewDatas */ = {
-			isa = PBXGroup;
-			children = (
-				049961282C0D722000466BA3 /* AuthViewData.swift */,
-			);
-			path = ViewDatas;
-			sourceTree = "<group>";
-		};
-		049961292C0D722000466BA3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0499612A2C0D722000466BA3 /* AuthView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		0499612B2C0D722100466BA3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0499612C2C0D722100466BA3 /* AuthModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		04B810BD2C21B490005188D1 /* Coupons */ = {
 			isa = PBXGroup;
 			children = (
-				04B810C02C21B4ED005188D1 /* AddCoupons */,
-				04B810BE2C21B4D8005188D1 /* HomeCoupons */,
+				04B810BE2C21B4D8005188D1 /* HomePriceRules */,
+				04B810C02C21B4ED005188D1 /* AddPriceRule */,
 			);
 			path = Coupons;
 			sourceTree = "<group>";
 		};
-		04B810BE2C21B4D8005188D1 /* HomeCoupons */ = {
+		04B810BE2C21B4D8005188D1 /* HomePriceRules */ = {
 			isa = PBXGroup;
 			children = (
 				04B810C12C21B500005188D1 /* ViewControllers */,
+				046841222C29917F00E0DA48 /* ViewModel */,
 			);
-			path = HomeCoupons;
+			path = HomePriceRules;
 			sourceTree = "<group>";
 		};
-		04B810C02C21B4ED005188D1 /* AddCoupons */ = {
+		04B810C02C21B4ED005188D1 /* AddPriceRule */ = {
 			isa = PBXGroup;
 			children = (
 				04B810C42C21B5A1005188D1 /* ViewControllers */,
 			);
-			path = AddCoupons;
+			path = AddPriceRule;
 			sourceTree = "<group>";
 		};
 		04B810C12C21B500005188D1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				04B810C22C21B526005188D1 /* CouponsViewController.swift */,
+				04B810C22C21B526005188D1 /* PriceRulesViewController.swift */,
+				04E42CD72C2A276100EB7AED /* PriceRuleTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -424,6 +416,8 @@
 				04DF82952C22449A0046C3DD /* RxAlamofire */,
 				04DF82982C226C9C0046C3DD /* IQKeyboardManagerSwift */,
 				04DAA0C02C263A71005AF4F0 /* Kingfisher */,
+				046841262C29AD3C00E0DA48 /* FirebaseAuth */,
+				046841282C29AD3C00E0DA48 /* FirebaseFirestore */,
 			);
 			productName = "SwiftCart Admin";
 			productReference = 049850622C09F6BF00F2E137 /* SwiftCart Admin.app */;
@@ -480,6 +474,7 @@
 				04DF82942C22449A0046C3DD /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				04DF82972C226C9C0046C3DD /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				04DAA0BF2C263A71005AF4F0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				046841252C29AD3C00E0DA48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 049850632C09F6BF00F2E137 /* Products */;
 			projectDirPath = "";
@@ -501,6 +496,7 @@
 				0498506F2C09F6C100F2E137 /* Assets.xcassets in Resources */,
 				048E8E582C1947040010C039 /* ProductImageCell.xib in Resources */,
 				048F25F02C134F33008C4978 /* HomeCollectionViewCell.xib in Resources */,
+				04DFFB962C2A3C9200DE36C1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,12 +519,13 @@
 				04DF829E2C2318340046C3DD /* Util.swift in Sources */,
 				04DF829C2C2317A20046C3DD /* Constants.swift in Sources */,
 				049850662C09F6BF00F2E137 /* AppDelegate.swift in Sources */,
-				04B810C32C21B526005188D1 /* CouponsViewController.swift in Sources */,
+				04B810C32C21B526005188D1 /* PriceRulesViewController.swift in Sources */,
 				049850832C09F78800F2E137 /* ProductModel.swift in Sources */,
 				04DAA0BB2C26261D005AF4F0 /* ViewModeling.swift in Sources */,
 				0477E0FD2C295A5700610C5C /* InventoryViewController.swift in Sources */,
 				0420004F2C0A6C7900356A03 /* AppCoordinator.swift in Sources */,
 				0477E0F52C294F1800610C5C /* InventoryModel.swift in Sources */,
+				04E42CD82C2A276100EB7AED /* PriceRuleTableViewCell.swift in Sources */,
 				048E8E572C1947040010C039 /* ProductImageCell.swift in Sources */,
 				046C81032C1FE888009EE789 /* TempViewController.swift in Sources */,
 				04B810C62C21B5C0005188D1 /* AddPriceRuleViewController.swift in Sources */,
@@ -538,6 +535,8 @@
 				047199852C26182C001FFFA6 /* ProductViewModel.swift in Sources */,
 				049850682C09F6BF00F2E137 /* SceneDelegate.swift in Sources */,
 				0498507E2C09F76900F2E137 /* RemoteService.swift in Sources */,
+				04E42CD52C2A0D8300EB7AED /* AuthViewModel.swift in Sources */,
+				046841242C2991A500E0DA48 /* PriceRulesViewModel.swift in Sources */,
 				0420004C2C0A142D00356A03 /* Coordinator.swift in Sources */,
 				0480C8622C0D369A00629C35 /* HomeViewController.swift in Sources */,
 				048F25EF2C134F33008C4978 /* HomeCollectionViewCell.swift in Sources */,
@@ -828,6 +827,14 @@
 				minimumVersion = 25.0.1;
 			};
 		};
+		046841252C29AD3C00E0DA48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.28.0;
+			};
+		};
 		04DAA0BF2C263A71005AF4F0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -859,6 +866,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04001E5F2C0F3B1F00FB7030 /* XCRemoteSwiftPackageReference "Cosmos" */;
 			productName = Cosmos;
+		};
+		046841262C29AD3C00E0DA48 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 046841252C29AD3C00E0DA48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		046841282C29AD3C00E0DA48 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 046841252C29AD3C00E0DA48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		04DAA0C02C263A71005AF4F0 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

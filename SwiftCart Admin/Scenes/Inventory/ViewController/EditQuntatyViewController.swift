@@ -28,9 +28,17 @@ class EditQuntatyViewController: UIViewController {
     @IBAction func add(_ sender: UIButton) {
         switch sender.tag{
         case 1:
-            value += 1
+            if value < 50{
+                value += 1
+            }else{
+                Utils.showAlert(title: "Value", message: "Are you sure to let the value bigger than 50?", preferredStyle: .alert, from: self,actions: [UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                    self.value += 1
+                }),UIAlertAction(title: "Cancel", style: .cancel)])
+            }
         case 2:
-            value -= 1
+            if value > 0{
+                value -= 1
+            }
         default:
             break
         }

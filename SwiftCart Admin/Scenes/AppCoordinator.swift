@@ -17,26 +17,22 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
+//        gotoAuth()
+        
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+ 
+        let priceRulesVC = storyboard.instantiateViewController(withIdentifier: K.Main.priceRulesVCName) as! PriceRulesViewController
+        priceRulesVC.coordinator = self
+        priceRulesVC.viewModel = PriceRulesViewModel(service: RemoteService())
+        
+        navigationController.pushViewController(priceRulesVC, animated: true)
+    }
+    
+    func gotoAuth(){
         let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: K.Main.authVCName) as! AuthViewController
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
-    }
-    
-    func gotoAddPriceRule(product: ProductDetail? = nil){
-        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.priceRuleDetail) as! AddPriceRuleViewController
-//        vc.viewModel = ViewModel(service: RemoteService())
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
-    }
-    
-    func gotoAddProduct(product: ProductDetail? = nil){
-        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.productDetail) as! AddProductViewController
-        vc.viewModel = ProductViewModel(service: RemoteService())
-        vc.coordinator = self
-        vc.product = product
+        vc.viewModel = AuthViewModel()
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -47,23 +43,42 @@ class AppCoordinator: Coordinator {
         homeVC.coordinator = self
         homeVC.viewModel = ProductViewModel(service: RemoteService())
         homeVC.tabBarItem = UITabBarItem(title: K.Title.home, image: K.SystemImage.home, tag: 0)
-
+        
         let inventoryVC = storyboard.instantiateViewController(withIdentifier: K.Main.inventoryVCName) as! InventoryViewController
         inventoryVC.coordinator = self
         inventoryVC.viewModel = InventoryViewModel(service: RemoteService())
         inventoryVC.tabBarItem = UITabBarItem(title: K.Title.inventory, image: K.SystemImage.inventory, tag: 1)
-
-        let couponsVC = storyboard.instantiateViewController(withIdentifier: K.Main.couponsVCName) as! CouponsViewController
-        couponsVC.coordinator = self
-        couponsVC.tabBarItem = UITabBarItem(title: K.Title.coupons, image: K.SystemImage.coupons, tag: 2)
-                
+        
+        let priceRulesVC = storyboard.instantiateViewController(withIdentifier: K.Main.priceRulesVCName) as! PriceRulesViewController
+        priceRulesVC.coordinator = self
+        priceRulesVC.viewModel = PriceRulesViewModel(service: RemoteService())
+        priceRulesVC.tabBarItem = UITabBarItem(title: K.Title.coupons, image: K.SystemImage.coupons, tag: 2)
+        
         let tabBar = UITabBarController()
-        tabBar.viewControllers = [homeVC, inventoryVC, couponsVC]
+        tabBar.viewControllers = [homeVC, inventoryVC, priceRulesVC]
         if let tabBarColor = K.Assets.Color.viewBackground{
             tabBar.tabBar.backgroundColor = tabBarColor
         }
         
         navigationController.pushViewController(tabBar, animated: true)
+    }
+    
+    func gotoAddPriceRule(priceRule: PriceRule? = nil){
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.priceRuleDetail) as! AddPriceRuleViewController
+        //        vc.viewModel = ViewModel(service: RemoteService())
+        vc.coordinator = self
+        vc.priceRule = priceRule
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func gotoAddProduct(product: ProductDetail? = nil){
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.productDetail) as! AddProductViewController
+        vc.viewModel = ProductViewModel(service: RemoteService())
+        vc.coordinator = self
+        vc.product = product
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func finish() {

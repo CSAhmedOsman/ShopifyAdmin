@@ -5,7 +5,6 @@
 //  Created by Mac on 19/06/2024.
 //
 
-import Foundation
 import UIKit
 
 public enum K {
@@ -16,7 +15,7 @@ public enum K {
         static let homeVCName = "HomeViewController"
         static let productDetail = "AddProductViewController"
         static let priceRuleDetail = "AddPriceRuleViewController"
-        static let couponsVCName = "CouponsViewController"
+        static let priceRulesVCName = "PriceRulesViewController"
         static let inventoryVCName = "InventoryViewController"
         static let editQuntatyVCName = "EditQuntatyViewController"
     }
@@ -35,10 +34,15 @@ public enum K {
     }
     
     enum Enums{
+        enum Auth{
+            static let adminMail = "admin@swiftcart.com"
+        }
+        
         enum Product{
             static let vendors = ["ADIDAS", "ASICS TIGER", "CONVERSE", "DR MARTENS", "FLEX FIT", "HERSCHEL", "NIKE", "PALLADIUM", "PUMA", "SUPRA", "TIMBERLAND", "VANS"]
             static let productTypes = ["ACCESSORIES", "SHOES", "T-SHIRTS"]
         }
+        
         enum Coupons{
             static let valueType = ["fixed_amount", "percentage"]
             static let targetType = ["line_item", "shipping_line"]
@@ -66,6 +70,8 @@ public enum K {
         enum Image{
             static let productPlaceholder = UIImage(named: "ProductPlaceholder")
             static let PriceRulePlaceholder = UIImage(named: "PriceRulePlaceholder")
+            static let DiscountPlaceholder = UIImage(named: "DiscountPlaceholder")
+            static let ShippingPlaceholder = UIImage(named: "ShippingPlaceholder")
         }
     }
     
@@ -75,7 +81,9 @@ public enum K {
             static let productDetail = "products/{ItemId}.json" // Delete & Update
         }
         enum Coupons{
-            
+            static let priceRules = "price_rules.json"
+            static let priceRuleDetails = "price_rules/{ItemId}.json"
+            static let addDiscount = "price_rules/{ItemId}/discount_codes.json"
         }
         enum Inventory{
             static let locationId: Int64 = 71569309743
