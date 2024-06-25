@@ -71,25 +71,30 @@ class ProductViewModel {
     }
     
     func updateItem(itemData: ProductResponse?) {
-        if let jsonData = Utils.encode(itemData) {
-            service.makeAPICall(method: .put, endpoint: K.Endpoint.Product.product, byId: itemData?.product?.id ?? 0, itemData: jsonData)
-                .flatMap { data -> Observable<ProductResponse> in
-                    if let productResponse: ProductResponse = Utils.decode(from: data) {
-                        return Observable.just(productResponse)
-                    } else {
-                        return Observable.error(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to decode product response"]))
-                    }
-                }
-                .subscribe(onNext: { [weak self] product in
-                    self?.productResponse = product
-                    self?.bindDataToVc()
-                }, onError: { [weak self] error in
-                    self?.errorSubject.onNext(error)
-                })
-                .disposed(by: disposeBag)
-        } else {
-            errorSubject.onNext(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to encode product data"]))
-        }
+        
+        deleteItem(at: itemData?.product?.id ?? 0)
+        
+        addItem(itemData: itemData)
+        
+//        if let jsonData = Utils.encode(itemData) {
+//            service.makeAPICall(method: .put, endpoint: K.Endpoint.Product.product, byId: itemData?.product?.id ?? 0, itemData: jsonData)
+//                .flatMap { data -> Observable<ProductResponse> in
+//                    if let productResponse: ProductResponse = Utils.decode(from: data) {
+//                        return Observable.just(productResponse)
+//                    } else {
+//                        return Observable.error(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to decode product response"]))
+//                    }
+//                }
+//                .subscribe(onNext: { [weak self] product in
+//                    self?.productResponse = product
+//                    self?.bindDataToVc()
+//                }, onError: { [weak self] error in
+//                    self?.errorSubject.onNext(error)
+//                })
+//                .disposed(by: disposeBag)
+//        } else {
+//            errorSubject.onNext(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to encode product data"]))
+//        }
     }
     
     func deleteItem(at id: Int64) {

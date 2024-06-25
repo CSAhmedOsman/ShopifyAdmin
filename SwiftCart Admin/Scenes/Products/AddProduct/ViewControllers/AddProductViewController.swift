@@ -322,12 +322,24 @@ class AddProductViewController: UIViewController {
             product.variants = (product.variants ?? []) + [ProductVariant(price: price)]
         }
         
+        sender.configuration?.showsActivityIndicator = true
+        sender.isEnabled = false
+        
         print("saveChanges: \(String(describing: product))")
         if isEdit{
             viewModel.updateItem(itemData: ProductResponse(product: product))
         }else {
             viewModel.addItem(itemData: ProductResponse(product: product))
         }
+        
+        viewModel.bindDataToVc = { [weak self] in
+            self?.coordinator?.finish()
+        }
+    }
+    
+    
+    @IBAction func goBack(_ sender: UIButton) {
+        coordinator?.finish()
     }
 }
 

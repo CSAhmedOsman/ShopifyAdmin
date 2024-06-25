@@ -94,6 +94,10 @@ class DiscountViewController: UIViewController {
         }
     }
     
+    @IBAction func goBack(_ sender: UIButton) {
+        coordinator?.finish()
+    }
+    
     // MARK: - Helper Methods
 
     func toggleShow(theVeiw: UIView, isViewVisible: Bool, spaceConstraint: NSLayoutConstraint, forHeight: CGFloat){

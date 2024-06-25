@@ -200,6 +200,10 @@ class AddPriceRuleViewController: UIViewController {
         }
     }
 
+    @IBAction func goBack(_ sender: UIButton) {
+        coordinator?.finish()
+    }
+    
     func isSameDay(firstDate: Date, secondDate: Date) -> Bool{
         
             let firstDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: firstDate)

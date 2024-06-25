@@ -17,15 +17,8 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-//        gotoAuth()
-        
-        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
- 
-        let homeVC = storyboard.instantiateViewController(withIdentifier: K.Main.homeVCName) as! HomeViewController
-        homeVC.coordinator = self
-        homeVC.viewModel = ProductViewModel(service: RemoteService())
-        
-        navigationController.pushViewController(homeVC, animated: true)
+        gotoAuth()
+        navigationController.navigationBar.isHidden = true
     }
     
     func gotoAuth(){
