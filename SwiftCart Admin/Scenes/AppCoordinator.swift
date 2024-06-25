@@ -47,8 +47,12 @@ class AppCoordinator: Coordinator {
         priceRulesVC.viewModel = PriceRulesViewModel(service: RemoteService())
         priceRulesVC.tabBarItem = UITabBarItem(title: K.Title.coupons, image: K.SystemImage.coupons, tag: 2)
         
+        let profileVC = storyboard.instantiateViewController(withIdentifier: K.Main.profileVCName) as! ProfileViewController
+        profileVC.coordinator = self
+        profileVC.tabBarItem = UITabBarItem(title: K.Title.profile, image: K.SystemImage.profile, tag: 3)
+        
         let tabBar = UITabBarController()
-        tabBar.viewControllers = [homeVC, inventoryVC, priceRulesVC]
+        tabBar.viewControllers = [homeVC, inventoryVC, priceRulesVC, profileVC]
         if let tabBarColor = K.Assets.Color.viewBackground{
             tabBar.tabBar.backgroundColor = tabBarColor
         }
@@ -84,7 +88,25 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
+    func gotoAboutUs(){
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.aboutUsVCName) as! AboutUsViewController
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func gotoContactUs(){
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.contactUsVCName) as! ContactUsViewController
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
     func finish() {
         navigationController.popViewController(animated: true)
+    }
+    
+    func logout(){
+        navigationController.popToRootViewController(animated: true)
     }
 }

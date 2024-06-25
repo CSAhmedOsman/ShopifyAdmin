@@ -20,6 +20,9 @@ public enum K {
         static let editQuntatyVCName = "EditQuntatyViewController"
         static let discountsVCName = "DiscountViewController"
         static let addDiscountVCName = "AddDiscountViewController"
+        static let profileVCName = "ProfileViewController"
+        static let contactUsVCName = "ContactUsViewController"
+        static let aboutUsVCName = "AboutUsViewController"
     }
     
     enum CustomView{
@@ -33,6 +36,7 @@ public enum K {
         static let home = "Home"
         static let coupons = "Coupons"
         static let inventory = "Inventory"
+        static let profile = "Profile"
     }
     
     enum Enums{
@@ -57,6 +61,7 @@ public enum K {
         static let coupons = UIImage(systemName: "tag.slash")
         static let inventory = UIImage(systemName: "tray")
         static let trash = UIImage(systemName: "trash")
+        static let profile = UIImage(systemName: "person.crop.circle")
     }
     
     enum Assets{
@@ -75,6 +80,7 @@ public enum K {
             static let PercentagePlaceholder = UIImage(named: "PercentagePlaceholder")
             static let DiscountPlaceholder = UIImage(named: "DiscountPlaceholder")
             static let ShippingPlaceholder = UIImage(named: "ShippingPlaceholder")
+            static let Team = UIImage(named: "Team")
         }
     }
     

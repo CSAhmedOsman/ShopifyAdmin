@@ -22,18 +22,23 @@ class AuthViewController: UIViewController {
     
     @IBAction func login(sender: UIButton) {
 
-//        coordinator?.gotoHome()
-
+        sender.configuration?.showsActivityIndicator = true
+        sender.isEnabled = false
+        
         viewModel.login(email: email.text ?? "", password: password.text ?? "") { [weak self] result in
             switch result{
             case .success(_):
                 DispatchQueue.main.async {
+                    self?.email.text = ""
+                    self?.password.text = ""
                     self?.coordinator?.gotoHome()
                 }
             case .failure(let error):
                 guard let self else{ break }
                 Utils.showAlert(title: "Login", message: error.localizedDescription, preferredStyle: .alert, from: self)
             }
+            sender.configuration?.showsActivityIndicator = false
+            sender.isEnabled = true
         }
     }
 }

@@ -47,6 +47,9 @@
 		04DFFBA12C2A70C800DE36C1 /* AddDiscountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFFBA02C2A70C800DE36C1 /* AddDiscountViewController.swift */; };
 		04DFFBA32C2A70E400DE36C1 /* DiscountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFFBA22C2A70E400DE36C1 /* DiscountViewModel.swift */; };
 		04DFFBA52C2A73A900DE36C1 /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFFBA42C2A73A900DE36C1 /* DiscountModel.swift */; };
+		04DFFBAA2C2AB00000DE36C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFFBA92C2AB00000DE36C1 /* ProfileViewController.swift */; };
+		04DFFBAC2C2ABF6A00DE36C1 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFFBAB2C2ABF6A00DE36C1 /* ContactUsViewController.swift */; };
+		04DFFBAE2C2AC13200DE36C1 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFFBAD2C2AC13200DE36C1 /* AboutUsViewController.swift */; };
 		04E42CD52C2A0D8300EB7AED /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049961262C0D722000466BA3 /* AuthViewModel.swift */; };
 		04E42CD82C2A276100EB7AED /* PriceRuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E42CD72C2A276100EB7AED /* PriceRuleTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -100,6 +103,9 @@
 		04DFFBA02C2A70C800DE36C1 /* AddDiscountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiscountViewController.swift; sourceTree = "<group>"; };
 		04DFFBA22C2A70E400DE36C1 /* DiscountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountViewModel.swift; sourceTree = "<group>"; };
 		04DFFBA42C2A73A900DE36C1 /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
+		04DFFBA92C2AB00000DE36C1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		04DFFBAB2C2ABF6A00DE36C1 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		04DFFBAD2C2AC13200DE36C1 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		04E42CD72C2A276100EB7AED /* PriceRuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -293,8 +299,8 @@
 		049961212C0D71DE00466BA3 /* Autantication */ = {
 			isa = PBXGroup;
 			children = (
-				049961232C0D721F00466BA3 /* ViewControllers */,
-				049961252C0D721F00466BA3 /* ViewModels */,
+				04DFFBA72C2AAFD400DE36C1 /* Profile */,
+				04DFFBA62C2AAFC100DE36C1 /* Login */,
 			);
 			path = Autantication;
 			sourceTree = "<group>";
@@ -460,6 +466,34 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		04DFFBA62C2AAFC100DE36C1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				049961232C0D721F00466BA3 /* ViewControllers */,
+				049961252C0D721F00466BA3 /* ViewModels */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		04DFFBA72C2AAFD400DE36C1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				04DFFBA82C2AAFE000DE36C1 /* ViewControllers */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		04DFFBA82C2AAFE000DE36C1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				04DFFBA92C2AB00000DE36C1 /* ProfileViewController.swift */,
+				04DFFBAB2C2ABF6A00DE36C1 /* ContactUsViewController.swift */,
+				04DFFBAD2C2AC13200DE36C1 /* AboutUsViewController.swift */,
+			);
+			name = ViewControllers;
+			path = "../New Group/ViewControllers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -591,9 +625,11 @@
 				0420004F2C0A6C7900356A03 /* AppCoordinator.swift in Sources */,
 				0477E0F52C294F1800610C5C /* InventoryModel.swift in Sources */,
 				04E42CD82C2A276100EB7AED /* PriceRuleTableViewCell.swift in Sources */,
+				04DFFBAA2C2AB00000DE36C1 /* ProfileViewController.swift in Sources */,
 				048E8E572C1947040010C039 /* ProductImageCell.swift in Sources */,
 				046C81032C1FE888009EE789 /* TempViewController.swift in Sources */,
 				04B810C62C21B5C0005188D1 /* AddPriceRuleViewController.swift in Sources */,
+				04DFFBAC2C2ABF6A00DE36C1 /* ContactUsViewController.swift in Sources */,
 				04DFFBA32C2A70E400DE36C1 /* DiscountViewModel.swift in Sources */,
 				0477E1002C295E6B00610C5C /* InventoryViewModel.swift in Sources */,
 				04DFFB9F2C2A70A900DE36C1 /* DiscountViewController.swift in Sources */,
@@ -601,6 +637,7 @@
 				04DFFBA52C2A73A900DE36C1 /* DiscountModel.swift in Sources */,
 				04B810BC2C1FF660005188D1 /* AddProductViewController.swift in Sources */,
 				047199852C26182C001FFFA6 /* ProductViewModel.swift in Sources */,
+				04DFFBAE2C2AC13200DE36C1 /* AboutUsViewController.swift in Sources */,
 				049850682C09F6BF00F2E137 /* SceneDelegate.swift in Sources */,
 				0498507E2C09F76900F2E137 /* RemoteService.swift in Sources */,
 				04E42CD52C2A0D8300EB7AED /* AuthViewModel.swift in Sources */,

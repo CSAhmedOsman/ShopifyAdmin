@@ -22,17 +22,11 @@ struct DiscountCode: Codable {
     var priceRuleId: Int64?
     var code: String?
     var usageCount: Int?
-    var createdAt: String?
-    var updatedAt: String?
-    var errors: [String: [String]]?
 
     enum CodingKeys: String, CodingKey {
         case id
         case priceRuleId = "price_rule_id"
         case code
         case usageCount = "usage_count"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case errors
     }
 }
