@@ -6,7 +6,6 @@
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -940,21 +939,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCS-NO-dCF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1891" y="713"/>
-        </scene>
-        <!--Temp View Controller-->
-        <scene sceneID="D4S-pY-9Zj">
-            <objects>
-                <viewController storyboardIdentifier="TempViewController" id="Syu-C0-bRe" customClass="TempViewController" customModule="SwiftCart_Admin" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ezZ-ml-gGl">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="QcT-jw-3yF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ovt-Ec-gV3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1097" y="713"/>
         </scene>
         <!--Price Rules View Controller-->
         <scene sceneID="ccy-ED-Nfe">
@@ -1895,6 +1879,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="LFz-eY-Lr1"/>
                     <connections>
+                        <outlet property="mainView" destination="Zv2-Nv-cuj" id="z50-Jo-Z1d"/>
                         <outlet property="tfDiscountCode" destination="Cze-8s-rly" id="RJH-qF-IpP"/>
                     </connections>
                 </viewController>
@@ -2240,8 +2225,5 @@
         <namedColor name="ViewBackgrond">
             <color white="0.88999998569488525" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

@@ -13,7 +13,6 @@
 		046841242C2991A500E0DA48 /* PriceRulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046841232C2991A500E0DA48 /* PriceRulesViewModel.swift */; };
 		046841272C29AD3C00E0DA48 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 046841262C29AD3C00E0DA48 /* FirebaseAuth */; };
 		046841292C29AD3C00E0DA48 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 046841282C29AD3C00E0DA48 /* FirebaseFirestore */; };
-		046C81032C1FE888009EE789 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C81022C1FE888009EE789 /* TempViewController.swift */; };
 		047199822C255830001FFFA6 /* PriceRuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047199812C255830001FFFA6 /* PriceRuleModel.swift */; };
 		047199852C26182C001FFFA6 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047199842C26182C001FFFA6 /* ProductViewModel.swift */; };
 		0477E0F52C294F1800610C5C /* InventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477E0F42C294F1800610C5C /* InventoryModel.swift */; };
@@ -69,7 +68,6 @@
 		0420004E2C0A6C7900356A03 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		046841232C2991A500E0DA48 /* PriceRulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRulesViewModel.swift; sourceTree = "<group>"; };
 		0468412A2C29AF8D00E0DA48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		046C81022C1FE888009EE789 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		047199812C255830001FFFA6 /* PriceRuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleModel.swift; sourceTree = "<group>"; };
 		047199842C26182C001FFFA6 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		0477E0F42C294F1800610C5C /* InventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryModel.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 				049850792C09F72800F2E137 /* Model */,
 				049850652C09F6BF00F2E137 /* AppDelegate.swift */,
 				049850672C09F6BF00F2E137 /* SceneDelegate.swift */,
-				046C81022C1FE888009EE789 /* TempViewController.swift */,
 				0498506E2C09F6C100F2E137 /* Assets.xcassets */,
 				049850732C09F6C100F2E137 /* Info.plist */,
 				0468412A2C29AF8D00E0DA48 /* GoogleService-Info.plist */,
@@ -627,7 +624,6 @@
 				04E42CD82C2A276100EB7AED /* PriceRuleTableViewCell.swift in Sources */,
 				04DFFBAA2C2AB00000DE36C1 /* ProfileViewController.swift in Sources */,
 				048E8E572C1947040010C039 /* ProductImageCell.swift in Sources */,
-				046C81032C1FE888009EE789 /* TempViewController.swift in Sources */,
 				04B810C62C21B5C0005188D1 /* AddPriceRuleViewController.swift in Sources */,
 				04DFFBAC2C2ABF6A00DE36C1 /* ContactUsViewController.swift in Sources */,
 				04DFFBA32C2A70E400DE36C1 /* DiscountViewModel.swift in Sources */,

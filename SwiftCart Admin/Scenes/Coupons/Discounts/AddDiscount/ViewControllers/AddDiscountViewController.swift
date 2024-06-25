@@ -9,6 +9,7 @@ import UIKit
 
 class AddDiscountViewController: UIViewController {
     
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var tfDiscountCode: UITextField!
     
     var bindDataToBackScreen: (String) -> () = {_ in }
@@ -18,6 +19,7 @@ class AddDiscountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainView.layer.cornerRadius = 16
         tfDiscountCode.text = value
     }
     
