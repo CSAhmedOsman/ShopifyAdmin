@@ -48,7 +48,8 @@ class PriceRulesViewModel {
     }
     
     func addItem(itemData: PriceRule) {
-        if let jsonData = Utils.encode(itemData) {
+        let request = PriceRuleResponse(priceRule: itemData)
+        if let jsonData = Utils.encode(request) {
             service.makeAPICall(method: .post, endpoint: K.Endpoint.Coupons.priceRules, byId: nil, itemData: jsonData)
                 .flatMap { data -> Observable<PriceRuleResponse> in
                     if let priceRuleResponse: PriceRuleResponse = Utils.decode(from: data) {
@@ -88,7 +89,8 @@ class PriceRulesViewModel {
     }
     
     func updateItem(itemData: PriceRule) {
-        if let jsonData = Utils.encode(itemData) {
+        let request = PriceRuleResponse(priceRule: itemData)
+        if let jsonData = Utils.encode(request) {
             service.makeAPICall(method: .put, endpoint: K.Endpoint.Coupons.priceRuleDetails, byId: itemData.id, itemData: jsonData)
                 .flatMap { data -> Observable<PriceRuleResponse> in
                     if let priceRuleResponse: PriceRuleResponse = Utils.decode(from: data) {

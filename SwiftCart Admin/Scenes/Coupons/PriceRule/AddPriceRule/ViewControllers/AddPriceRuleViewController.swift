@@ -12,6 +12,7 @@ import RxCocoa
 class AddPriceRuleViewController: UIViewController {
 
     weak var coordinator: AppCoordinator?
+    var viewModel: PriceRulesViewModel!
     private let disposeBag = DisposeBag()
 
     @IBOutlet weak var priceImageView: UIImageView!
@@ -27,6 +28,8 @@ class AddPriceRuleViewController: UIViewController {
     
     
     var priceRule: PriceRule! = nil
+    var isEdit = false
+    
  private let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
@@ -37,6 +40,7 @@ class AddPriceRuleViewController: UIViewController {
         setupDateFormatter()
         setupDatePicker()
         setupMenuButtons()
+        setupViewModel()
     }
     
     func setupMenuButtons(){
@@ -48,6 +52,23 @@ class AddPriceRuleViewController: UIViewController {
     private func setupMenuButton(options: [String], for button: UIButton) {
         let menuItems = options.map { option in
             UIAction(title: option) { _ in
+                if option == K.Enums.Coupons.targetType[1]{
+                    self.priceImageView.image = K.Assets.Image.ShippingPlaceholder
+                    self.tfPriceValue.text = "\(-100)"
+                    self.tfPriceValue.isEnabled = false
+                    self.btnValueType.setTitle(K.Enums.Coupons.valueType[1], for: .normal)
+                    self.btnValueType.isEnabled = false
+                    self.btnAllocationMethod.setTitle(K.Enums.Coupons.allocationMethod[1], for: .normal)
+                    self.btnAllocationMethod.isEnabled = false
+                } else if option == K.Enums.Coupons.targetType[0]{
+                    self.tfPriceValue.isEnabled = true
+                    self.btnValueType.isEnabled = true
+                    self.btnAllocationMethod.isEnabled = true
+                } else if option == K.Enums.Coupons.valueType[0]{
+                    self.priceImageView.image = K.Assets.Image.PriceRulePlaceholder
+                } else if option == K.Enums.Coupons.valueType[1]{
+                    self.priceImageView.image = K.Assets.Image.PercentagePlaceholder
+                }
                 button.setTitle(option, for: .normal)
             }
         }
@@ -59,18 +80,28 @@ class AddPriceRuleViewController: UIViewController {
     }
     
     func setupPriceRule(){
-        priceRule = priceRule ?? PriceRule()
-        
-        tfPriceTitle.text = priceRule.title
-        tfPriceValue.text = priceRule.value
-        btnValueType.setTitle(priceRule.valueType, for: .normal)
-        btnTargetType.setTitle(priceRule.targetType, for: .normal)
-        btnAllocationMethod.setTitle(priceRule.allocationMethod, for: .normal)
-        tfUsageLimit.text = "\(priceRule.usageLimit ?? 0)"
-        schCodeUsage.setOn(priceRule.oncePerCustomer ?? false, animated: true)
-        
-        dpStartsAt.date = dateFormatter.date(from: priceRule.startsAt ?? "") ?? Date()
-        dpEndsAt.date = dateFormatter.date(from: priceRule.endsAt ?? "") ?? Date()
+        if let priceRule{
+            isEdit = true
+            
+            let valueType = priceRule.valueType == K.Enums.Coupons.valueType[1]
+            let isShipping = priceRule.targetType == K.Enums.Coupons.targetType[1]
+            
+            priceImageView.image = isShipping ? K.Assets.Image.ShippingPlaceholder : valueType ? K.Assets.Image.PercentagePlaceholder : K.Assets.Image.PriceRulePlaceholder
+
+            tfPriceTitle.text = priceRule.title
+            tfPriceValue.text = priceRule.value
+            btnValueType.setTitle(priceRule.valueType, for: .normal)
+            btnTargetType.setTitle(priceRule.targetType, for: .normal)
+            btnAllocationMethod.setTitle(priceRule.allocationMethod, for: .normal)
+            tfUsageLimit.text = "\(priceRule.usageLimit ?? 0)"
+            schCodeUsage.setOn(priceRule.oncePerCustomer ?? false, animated: true)
+            
+            dpStartsAt.date = dateFormatter.date(from: priceRule.startsAt ?? "") ?? Date()
+            dpEndsAt.date = dateFormatter.date(from: priceRule.endsAt ?? "") ?? Date()
+        }else {
+            priceRule = PriceRule()
+            
+        }
     }
 
     func setupDateFormatter(){
@@ -81,8 +112,19 @@ class AddPriceRuleViewController: UIViewController {
     }   
     
     func setupDatePicker(){
-        dpStartsAt.minimumDate = Date()
         dpEndsAt.minimumDate = dpStartsAt.date
+    }
+    
+    private func setupViewModel() {
+        
+        // Handle errors
+        viewModel.errorDriver
+            .drive(onNext: { error in
+                // Handle error display or logging
+                print("Error fetching Inventory: \(error)")
+                Utils.showAlert(title: "Error", message: error.localizedDescription, preferredStyle: .alert, from: self)
+            })
+            .disposed(by: disposeBag)
     }
     
     @IBAction func switchCodeUsage(_ sender: UISwitch) {
@@ -98,14 +140,14 @@ class AddPriceRuleViewController: UIViewController {
         priceRule.endsAt = dateFormatter.string(from: sender.date)
     }
     
-    @IBAction func saveChanges(_ sender: Any) {
+    @IBAction func saveChanges(_ sender: UIButton) {
         guard let title = tfPriceTitle.text, !title.isEmpty else {
             Utils.showAlert(title: "Title", message: "Price Rule title is required.", preferredStyle: .alert, from: self)
             return
         }
         priceRule.title = title
         
-        guard let priceText = tfPriceValue.text, !priceText.isEmpty, let price = Int(priceText), price < 0 else {
+        guard let priceText = tfPriceValue.text, !priceText.isEmpty, let price = Double(priceText), price < 0 else {
             Utils.showAlert(title: "Invalid Input", message: "Please provide valid negative price.", preferredStyle: .alert, from: self)
             return
         }
@@ -116,7 +158,7 @@ class AddPriceRuleViewController: UIViewController {
             return
         }
         priceRule.valueType = valueType
-
+        
         guard let targetType = btnTargetType.titleLabel?.text, !targetType.isEqual("Target Type") else {
             Utils.showAlert(title: "Target Type", message: "Target Type is required.", preferredStyle: .alert, from: self)
             return
@@ -133,8 +175,29 @@ class AddPriceRuleViewController: UIViewController {
             priceRule.endsAt = nil
         }
         
-        print(priceRule!)
+        if let usageLimitText = tfUsageLimit.text, !usageLimitText.isEmpty {
+            if let usageLimit = Int(usageLimitText), usageLimit > 0{
+                priceRule.usageLimit = usageLimit
+            } else {
+                Utils.showAlert(title: "Invalid Input", message: "Please provide valid usage Limit.", preferredStyle: .alert, from: self)
+            }
+        }
         
+        if priceRule.startsAt == nil {
+            priceRule.startsAt = dateFormatter.string(from: dpStartsAt.date)
+        }
+        
+        print(priceRule!)
+        sender.configuration?.showsActivityIndicator = true
+        sender.isEnabled = false
+        if isEdit{
+            viewModel.updateItem(itemData: priceRule)
+        } else {
+            viewModel.addItem(itemData: priceRule)
+        }
+        viewModel.bindDataToVc = { [weak self] in
+            self?.coordinator?.finish()
+        }
     }
 
     func isSameDay(firstDate: Date, secondDate: Date) -> Bool{

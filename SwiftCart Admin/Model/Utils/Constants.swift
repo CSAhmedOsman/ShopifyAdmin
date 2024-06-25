@@ -18,6 +18,8 @@ public enum K {
         static let priceRulesVCName = "PriceRulesViewController"
         static let inventoryVCName = "InventoryViewController"
         static let editQuntatyVCName = "EditQuntatyViewController"
+        static let discountsVCName = "DiscountViewController"
+        static let addDiscountVCName = "AddDiscountViewController"
     }
     
     enum CustomView{
@@ -46,7 +48,7 @@ public enum K {
         enum Coupons{
             static let valueType = ["fixed_amount", "percentage"]
             static let targetType = ["line_item", "shipping_line"]
-            static let allocationMethod = ["each", "across"]
+            static let allocationMethod = ["across", "each"]
         }
     }
     
@@ -70,6 +72,7 @@ public enum K {
         enum Image{
             static let productPlaceholder = UIImage(named: "ProductPlaceholder")
             static let PriceRulePlaceholder = UIImage(named: "PriceRulePlaceholder")
+            static let PercentagePlaceholder = UIImage(named: "PercentagePlaceholder")
             static let DiscountPlaceholder = UIImage(named: "DiscountPlaceholder")
             static let ShippingPlaceholder = UIImage(named: "ShippingPlaceholder")
         }
@@ -83,7 +86,8 @@ public enum K {
         enum Coupons{
             static let priceRules = "price_rules.json"
             static let priceRuleDetails = "price_rules/{ItemId}.json"
-            static let addDiscount = "price_rules/{ItemId}/discount_codes.json"
+            static let discountCodes = "price_rules/{ItemId}/discount_codes.json"
+            static let discountCodeDetail = "price_rules/{ItemId}/discount_codes/{DetailId}.json"
         }
         enum Inventory{
             static let locationId: Int64 = 71569309743

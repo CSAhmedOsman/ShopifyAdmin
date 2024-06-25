@@ -16,14 +16,15 @@ class PriceRuleTableViewCell: UITableViewCell {
 
     func configuration(for rule: PriceRule){
         
-        let valueType = rule.valueType == K.Enums.Coupons.valueType[0]
+        let valueType = rule.valueType == K.Enums.Coupons.valueType[1]
         let isShipping = rule.targetType == K.Enums.Coupons.targetType[1]
         
-        imageTarget.image = isShipping ? K.Assets.Image.ShippingPlaceholder : valueType ? K.Assets.Image.PriceRulePlaceholder : K.Assets.Image.DiscountPlaceholder
+        imageTarget.image = isShipping ? K.Assets.Image.ShippingPlaceholder : valueType ? K.Assets.Image.PercentagePlaceholder : K.Assets.Image.PriceRulePlaceholder
         
         ruleTitle.text = rule.title
         ruleValue.text = "Value: \(rule.value ?? "0") \(valueType ? "$" : "%")"
-        ruleEnds.text = "Expiry Date: \(rule.endsAt ?? "None")"
+        let date = rule.endsAt?.split(separator: "T")[0]
+        ruleEnds.text = "Expiry Date: \(date ?? "None")"
     }
     
     override func awakeFromNib() {

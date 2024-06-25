@@ -21,11 +21,11 @@ class AppCoordinator: Coordinator {
         
         let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
  
-        let priceRulesVC = storyboard.instantiateViewController(withIdentifier: K.Main.priceRulesVCName) as! PriceRulesViewController
-        priceRulesVC.coordinator = self
-        priceRulesVC.viewModel = PriceRulesViewModel(service: RemoteService())
+        let homeVC = storyboard.instantiateViewController(withIdentifier: K.Main.homeVCName) as! HomeViewController
+        homeVC.coordinator = self
+        homeVC.viewModel = ProductViewModel(service: RemoteService())
         
-        navigationController.pushViewController(priceRulesVC, animated: true)
+        navigationController.pushViewController(homeVC, animated: true)
     }
     
     func gotoAuth(){
@@ -63,10 +63,20 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(tabBar, animated: true)
     }
     
+    func gotoDiscounts(with id: Int64){
+        let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Main.discountsVCName) as! DiscountViewController
+            
+        vc.viewModel = DiscountViewModel(priceRuleId: id, service: RemoteService())
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
     func gotoAddPriceRule(priceRule: PriceRule? = nil){
         let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: K.Main.priceRuleDetail) as! AddPriceRuleViewController
-        //        vc.viewModel = ViewModel(service: RemoteService())
+            
+        vc.viewModel = PriceRulesViewModel(service: RemoteService())
         vc.coordinator = self
         vc.priceRule = priceRule
         navigationController.pushViewController(vc, animated: true)

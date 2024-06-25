@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class AddProductViewController: UIViewController {
-
+    
     // MARK: - Properties
     weak var coordinator: AppCoordinator?
     var viewModel: ProductViewModel!
@@ -41,9 +41,17 @@ class AddProductViewController: UIViewController {
     @IBOutlet weak var productVariantsTable: UITableView!
     
     var tags: [String] = []
-    var options: [String] = []
-    var optionValues: [[String]] = [[],[],[]]
+    var options: [String] = []{
+        didSet{
+            setupMenuButton(options: options, for: optionsButton)
+        }
+    }
+    var option1Values: [String] = []
+    var option2Values: [String] = []
+    var option3Values: [String] = []
+    
     var product: ProductDetail! = nil
+    var isEdit = false
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -56,32 +64,44 @@ class AddProductViewController: UIViewController {
         setupProductDetail()
         setupProductImagesCollection()
         setupTableViews()
-
+        
         setupMenuButton(options: K.Enums.Product.vendors, for: vendorButton)
         setupMenuButton(options: K.Enums.Product.productTypes, for: productTypeButton)
         setupMenuButton(options: options, for: optionsButton)
-        setupMenuButton(options: optionValues[0], for: option1Button)
-        setupMenuButton(options: optionValues[1], for: option2Button)
-        setupMenuButton(options: optionValues[2], for: option3Button)
+        setupMenuButton(options: option1Values, for: option1Button)
+        setupMenuButton(options: option2Values, for: option2Button)
+        setupMenuButton(options: option3Values, for: option3Button)
     }
     
     private func setupProductDetail() {
-        product = product ?? ProductDetail()
         
-        tfProductName.text = product.title
-        tvProductDescription.text = product.bodyHTML
-        tfDefaultPrice.text = product.variants?.first??.price
-        tags = product.tags?.components(separatedBy: ", ") ?? []
-        
-        vendorButton.setTitle(product.vendor, for: .normal)
-        productTypeButton.setTitle(product.productType, for: .normal)
-        
-        var i = 0
-        product.options?.forEach({ productOption in
-            options.append(productOption?.name ?? "")
-            optionValues[i] += productOption?.values ?? []
-            i += 1
-        })
+        if let product{
+            isEdit = true
+            
+            tfProductName.text = product.title
+            tvProductDescription.text = product.bodyHTML
+            tfDefaultPrice.text = product.variants?.first??.price
+            tags = product.tags?.components(separatedBy: ", ") ?? []
+            
+            vendorButton.setTitle(product.vendor, for: .normal)
+            productTypeButton.setTitle(product.productType, for: .normal)
+            
+            var i = 0
+            product.options?.forEach({ productOption in
+                options.append(productOption?.name ?? "")
+                switch i{
+                case 1:
+                    option2Values += productOption?.values ?? []
+                case 2:
+                    option3Values += productOption?.values ?? []
+                default:
+                    option1Values += productOption?.values ?? []
+                }
+                i += 1
+            })
+        }else {
+            product = ProductDetail()
+        }
     }
     
     private func setupTableViews() {
@@ -116,11 +136,11 @@ class AddProductViewController: UIViewController {
         options.enumerated().forEach { index, _ in
             switch index {
             case 1:
-                setupMenuButton(options: optionValues[1], for: option2Button)
+                setupMenuButton(options: option2Values, for: option2Button)
             case 2:
-                setupMenuButton(options: optionValues[2], for: option3Button)
+                setupMenuButton(options: option3Values, for: option3Button)
             default:
-                setupMenuButton(options: optionValues[0], for: option1Button)
+                setupMenuButton(options: option1Values, for: option1Button)
             }
         }
     }
@@ -152,7 +172,7 @@ class AddProductViewController: UIViewController {
     @IBAction func addTag(_ sender: UIButton) {
         guard let tag = tfProductTag.text, !tag.isEmpty,
               !tags.contains(where: { $0.lowercased() == tag.lowercased() }) else { return }
-
+        
         tags.append(tag)
         productTagsTable.reloadData()
         
@@ -166,7 +186,6 @@ class AddProductViewController: UIViewController {
         options.append(option)
         setupMenuButton(options: options, for: optionsButton)
         
-        optionValues.append([])
         productOptionsTable.reloadData()
         
         tfOptionName.text = ""
@@ -178,18 +197,28 @@ class AddProductViewController: UIViewController {
         
         let index = options.firstIndex { $0.lowercased() == option.lowercased() } ?? 0
         
-        if !optionValues[index].contains(where: { $0.lowercased() == value.lowercased() }) {
-            optionValues[index].append(value)
-            
-            setupProductVariantButtons()
-            switch index {
-            case 1:
-                productOption2ValuesTable.reloadData()
-            case 2:
-                productOption3ValuesTable.reloadData()
-            default:
-                productOption1ValuesTable.reloadData()
+        switch index{
+        case 1:
+            if !option2Values.contains(where: { $0.lowercased() == value.lowercased() }) {
+                option2Values.append(value)
             }
+        case 2:
+            if !option3Values.contains(where: { $0.lowercased() == value.lowercased() }) {
+                option3Values.append(value)
+            }
+        default:
+            if !option1Values.contains(where: { $0.lowercased() == value.lowercased() }) {
+                option1Values.append(value)
+            }
+        }
+        setupProductVariantButtons()
+        switch index {
+        case 1:
+            productOption2ValuesTable.reloadData()
+        case 2:
+            productOption3ValuesTable.reloadData()
+        default:
+            productOption1ValuesTable.reloadData()
         }
         
         tfOptionValue.text = ""
@@ -274,7 +303,14 @@ class AddProductViewController: UIViewController {
         var i = -1
         product.options = options.map { option in
             i += 1
-            return ProductOption(name: option, values: optionValues[i])
+            switch i{
+            case 1:
+                return ProductOption(name: option, values: option2Values)
+            case 2:
+                return ProductOption(name: option, values: option3Values)
+            default:
+                return ProductOption(name: option, values: option1Values)
+            }
         }
         
         if (product.variants?.count ?? 0) <= 0{
@@ -282,11 +318,16 @@ class AddProductViewController: UIViewController {
                   price.allSatisfy({ $0.isNumber }) else {
                 Utils.showAlert(title: "Invalid Input", message: "Please provide valid price or default price.", preferredStyle: .alert, from: self)
                 return
-                  }
+            }
             product.variants = (product.variants ?? []) + [ProductVariant(price: price)]
         }
         
         print("saveChanges: \(String(describing: product))")
+        if isEdit{
+            viewModel.updateItem(itemData: ProductResponse(product: product))
+        }else {
+            viewModel.addItem(itemData: ProductResponse(product: product))
+        }
     }
 }
 
@@ -319,11 +360,11 @@ extension AddProductViewController: UITableViewDelegate, UITableViewDataSource {
         case productOptionsTable:
             return options.count
         case productOption1ValuesTable:
-            return optionValues[0].count
+            return option1Values.count
         case productOption2ValuesTable:
-            return optionValues[1].count
+            return option2Values.count
         case productOption3ValuesTable:
-            return optionValues[2].count
+            return option3Values.count
         case productVariantsTable:
             return product.variants?.count ?? 0
         default:
@@ -341,11 +382,11 @@ extension AddProductViewController: UITableViewDelegate, UITableViewDataSource {
         case productOptionsTable:
             cell.textLabel?.text = options[indexPath.item]
         case productOption1ValuesTable:
-            cell.textLabel?.text = optionValues[0][indexPath.item]
+            cell.textLabel?.text = option1Values[indexPath.item]
         case productOption2ValuesTable:
-            cell.textLabel?.text = optionValues[1][indexPath.item]
+            cell.textLabel?.text = option2Values[indexPath.item]
         case productOption3ValuesTable:
-            cell.textLabel?.text = optionValues[2][indexPath.item]
+            cell.textLabel?.text = option3Values[indexPath.item]
         case productVariantsTable:
             cell.textLabel?.text = "Variant: \(product.variants?[indexPath.item]?.title ?? "")"
             cell.detailTextLabel?.text = "Price: \(product.variants?[indexPath.item]?.price ?? "0")"
@@ -365,13 +406,22 @@ extension AddProductViewController: UITableViewDelegate, UITableViewDataSource {
                         self.tags.remove(at: indexPath.item)
                     case self.productOptionsTable:
                         self.options.remove(at: indexPath.item)
-                        self.optionValues.remove(at: indexPath.item)
+                        switch indexPath.item {
+                        case 0:
+                            self.option1Values = []
+                        case 1:
+                            self.option2Values = []
+                        case 2:
+                            self.option3Values = []
+                        default:
+                            break
+                        }
                     case self.productOption1ValuesTable:
-                        self.optionValues[0].remove(at: indexPath.item)
+                        self.option1Values.remove(at: indexPath.item)
                     case self.productOption2ValuesTable:
-                        self.optionValues[1].remove(at: indexPath.item)
+                        self.option2Values.remove(at: indexPath.item)
                     case self.productOption3ValuesTable:
-                        self.optionValues[2].remove(at: indexPath.item)
+                        self.option3Values.remove(at: indexPath.item)
                     case self.productVariantsTable:
                         self.product.variants?.remove(at: indexPath.item)
                     default:
@@ -379,7 +429,7 @@ extension AddProductViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 },
-                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                UIAlertAction(title: "Cancel", style: .cancel)
             ])
         }
     }

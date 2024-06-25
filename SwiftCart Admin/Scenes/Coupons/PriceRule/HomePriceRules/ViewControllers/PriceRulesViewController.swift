@@ -142,7 +142,7 @@ extension PriceRulesViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.gotoAddPriceRule(priceRule: allPriceRules[indexPath.item])
+        coordinator?.gotoDiscounts(with: allPriceRules[indexPath.item].id ?? 0)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -151,9 +151,16 @@ extension PriceRulesViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            coordinator?.gotoAddPriceRule(priceRule: allPriceRules[indexPath.item])
-        } else if editingStyle == .insert{
-            coordinator?.gotoAddPriceRule(priceRule: allPriceRules[indexPath.item])
+            Utils.showAlert(title: "Delete Rule", message: "Are you sure you want to remove this Rule?", preferredStyle: .alert, from: self, actions: [
+                UIAlertAction(title: "Delete", style: .destructive) { _ in
+                    self.viewModel.deleteItem(at: self.allPriceRules[indexPath.item].id ?? 0)
+                    self.viewModel.bindDeleteDataFromVc = { [weak self] in
+                        self?.allPriceRules.remove(at: indexPath.item)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
+                },
+                UIAlertAction(title: "Cancel", style: .cancel)
+            ])
         }
     }
 }
