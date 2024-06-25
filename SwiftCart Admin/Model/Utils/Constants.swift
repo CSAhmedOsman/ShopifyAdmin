@@ -42,6 +42,7 @@ public enum K {
     enum Enums{
         enum Auth{
             static let adminMail = "admin@swiftcart.com"
+            static let userStatus = "isLogin"
         }
         
         enum Product{
