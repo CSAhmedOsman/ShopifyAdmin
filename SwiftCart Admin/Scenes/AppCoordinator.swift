@@ -117,5 +117,8 @@ class AppCoordinator: Coordinator {
     
     func logout(){
         navigationController.popToRootViewController(animated: true)
+
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: K.Enums.Auth.userStatus)
     }
 }
