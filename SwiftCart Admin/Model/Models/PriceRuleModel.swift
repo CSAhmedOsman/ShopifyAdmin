@@ -21,9 +21,9 @@ struct PriceRule: Codable {
     var id: Int64?
     var valueType: String?
     var value: String?
-    var customerSelection: String? = "all"
+    var customerSelection: String? = K.Value.Coupons.selection
     var targetType: String?
-    var targetSelection: String? = "all"
+    var targetSelection: String? = K.Value.Coupons.selection
     var allocationMethod: String?
     var allocationLimit: Int?
     var oncePerCustomer: Bool?

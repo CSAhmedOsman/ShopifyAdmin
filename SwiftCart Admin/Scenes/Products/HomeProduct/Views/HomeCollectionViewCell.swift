@@ -31,7 +31,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         self.product = product
         self.layer.cornerRadius = 16
         deleteBtn.configuration?.showsActivityIndicator = false
-        deleteBtn.imageView?.image = K.SystemImage.trash
+        deleteBtn.setImage(K.SystemImage.trash, for: .normal)
 
         productImage.kf.setImage(with: URL(string: product?.image?.src ?? ""), placeholder: K.Assets.Image.productPlaceholder)
         
@@ -46,7 +46,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
         deleteDelegate(self){
             sender.configuration?.showsActivityIndicator = false
             sender.isEnabled = true
-//            deleteBtn.imageView?.image = K.SystemImage.trash
         }
     }
 

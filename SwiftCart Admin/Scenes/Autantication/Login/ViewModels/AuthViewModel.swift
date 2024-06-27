@@ -22,7 +22,7 @@ class AuthViewModel{
             }
             
             if user != nil {
-                if email == K.Enums.Auth.adminMail {
+                if email == K.Value.Auth.adminMail {
                     complation(.success("Admin"))
                 }
             }

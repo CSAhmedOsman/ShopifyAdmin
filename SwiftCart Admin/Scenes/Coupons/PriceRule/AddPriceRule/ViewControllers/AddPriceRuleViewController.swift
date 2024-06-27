@@ -26,6 +26,7 @@ class AddPriceRuleViewController: UIViewController {
     @IBOutlet weak var dpStartsAt: UIDatePicker!
     @IBOutlet weak var dpEndsAt: UIDatePicker!
     
+    @IBOutlet weak var saveButton: UIButton!
     
     var priceRule: PriceRule! = nil
     var isEdit = false
@@ -44,29 +45,29 @@ class AddPriceRuleViewController: UIViewController {
     }
     
     func setupMenuButtons(){
-        setupMenuButton(options: K.Enums.Coupons.valueType, for: btnValueType)
-        setupMenuButton(options: K.Enums.Coupons.targetType, for: btnTargetType)
-        setupMenuButton(options: K.Enums.Coupons.allocationMethod, for: btnAllocationMethod)
+        setupMenuButton(options: K.Value.Coupons.valueType, for: btnValueType)
+        setupMenuButton(options: K.Value.Coupons.targetType, for: btnTargetType)
+        setupMenuButton(options: K.Value.Coupons.allocationMethod, for: btnAllocationMethod)
     }
     
     private func setupMenuButton(options: [String], for button: UIButton) {
         let menuItems = options.map { option in
             UIAction(title: option) { _ in
-                if option == K.Enums.Coupons.targetType[1]{
+                if option == K.Value.Coupons.targetType[1]{
                     self.priceImageView.image = K.Assets.Image.ShippingPlaceholder
                     self.tfPriceValue.text = "\(-100)"
                     self.tfPriceValue.isEnabled = false
-                    self.btnValueType.setTitle(K.Enums.Coupons.valueType[1], for: .normal)
+                    self.btnValueType.setTitle(K.Value.Coupons.valueType[1], for: .normal)
                     self.btnValueType.isEnabled = false
-                    self.btnAllocationMethod.setTitle(K.Enums.Coupons.allocationMethod[1], for: .normal)
+                    self.btnAllocationMethod.setTitle(K.Value.Coupons.allocationMethod[1], for: .normal)
                     self.btnAllocationMethod.isEnabled = false
-                } else if option == K.Enums.Coupons.targetType[0]{
+                } else if option == K.Value.Coupons.targetType[0]{
                     self.tfPriceValue.isEnabled = true
                     self.btnValueType.isEnabled = true
                     self.btnAllocationMethod.isEnabled = true
-                } else if option == K.Enums.Coupons.valueType[0]{
+                } else if option == K.Value.Coupons.valueType[0]{
                     self.priceImageView.image = K.Assets.Image.PriceRulePlaceholder
-                } else if option == K.Enums.Coupons.valueType[1]{
+                } else if option == K.Value.Coupons.valueType[1]{
                     self.priceImageView.image = K.Assets.Image.PercentagePlaceholder
                 }
                 button.setTitle(option, for: .normal)
@@ -83,8 +84,8 @@ class AddPriceRuleViewController: UIViewController {
         if let priceRule{
             isEdit = true
             
-            let valueType = priceRule.valueType == K.Enums.Coupons.valueType[1]
-            let isShipping = priceRule.targetType == K.Enums.Coupons.targetType[1]
+            let valueType = priceRule.valueType == K.Value.Coupons.valueType[1]
+            let isShipping = priceRule.targetType == K.Value.Coupons.targetType[1]
             
             priceImageView.image = isShipping ? K.Assets.Image.ShippingPlaceholder : valueType ? K.Assets.Image.PercentagePlaceholder : K.Assets.Image.PriceRulePlaceholder
 
@@ -115,14 +116,21 @@ class AddPriceRuleViewController: UIViewController {
         dpEndsAt.minimumDate = dpStartsAt.date
     }
     
-    private func setupViewModel() {
+    private func setupViewModel(){
+        // Bind product data to collection view using RxSwift
+        viewModel.bindDataToVc = { [weak self] in
+            self?.coordinator?.finish()
+        }
         
         // Handle errors
         viewModel.errorDriver
-            .drive(onNext: { error in
+            .drive(onNext: { [weak self] error in
                 // Handle error display or logging
-                print("Error fetching Inventory: \(error)")
-                Utils.showAlert(title: "Error", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                print("Error Save Price Rule: \(error.localizedDescription)")
+                self?.saveButton.configuration?.showsActivityIndicator = false
+                if let self {
+                    Utils.showAlert(title: "Error Save Price Rule", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -195,9 +203,7 @@ class AddPriceRuleViewController: UIViewController {
         } else {
             viewModel.addItem(itemData: priceRule)
         }
-        viewModel.bindDataToVc = { [weak self] in
-            self?.coordinator?.finish()
-        }
+
     }
 
     @IBAction func goBack(_ sender: UIButton) {

@@ -59,7 +59,7 @@ struct ProductVariant: Codable {
     var inventoryPolicy: String?
     var compareAtPrice: String?
     var fulfillmentService: String?
-    var inventoryManagement: String?
+    var inventoryManagement: String? = K.Value.Product.inventoryManager
     var option1: String?
     var option2: String?
     var option3: String?

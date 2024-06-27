@@ -68,10 +68,12 @@ class InventoryViewController: UIViewController {
         
         // Handle errors
         viewModel.errorDriver
-            .drive(onNext: { error in
+            .drive(onNext: { [weak self] error in
                 // Handle error display or logging
                 print("Error fetching Inventory: \(error.localizedDescription)")
-                Utils.showAlert(title: "Error", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                if let self {
+                    Utils.showAlert(title: "Error fetching Inventory", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -123,10 +125,9 @@ extension InventoryViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.CustomView.defaultCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.CustomView.defaultCellIdentifier, for: indexPath) as! InventoryTableViewCell
         
-        cell.textLabel?.text = "Item Id: \(allInventoryLevels[indexPath.item].inventoryItemId)"
-        cell.detailTextLabel?.text = "Quantaty \(allInventoryLevels[indexPath.item].available ?? 0)"
+        cell.config(item: allInventoryLevels[indexPath.item])
         
         cell.layer.cornerRadius = 12
         
@@ -134,23 +135,28 @@ extension InventoryViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: K.Main.editQuntatyVCName) as? EditQuntatyViewController else { return }
         
-        let value = allInventoryLevels[indexPath.item].available ?? 0
-        vc.value = value
-        vc.bindDataToInventoryScreen = { newValue in
-            if newValue != value{
-                var inventory = self.allInventoryLevels[indexPath.item]
-                inventory.available = newValue
-                self.viewModel.updateItem(itemData: inventory)
-                self.allInventoryLevels[indexPath.item] = inventory
-                self.inventoryLevelsTable.reloadData()
+        var inventoryItem = allInventoryLevels[indexPath.item]
+        
+        if inventoryItem.inventoryManagement == K.Value.Product.inventoryManager {
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: K.Main.editQuntatyVCName) as? EditQuntatyViewController else { return }
+            
+            let value = inventoryItem.available ?? 0
+            vc.value = value
+            vc.bindDataToInventoryScreen = { newValue in
+                if newValue != value{
+                    inventoryItem.available = newValue
+                    self.viewModel.updateItem(itemData: inventoryItem)
+                    self.refreshData()
+                }
             }
+            self.present(vc, animated: true)
+        }else {
+            Utils.showAlert(title: "Edit Item", message: "Inventory item does not have inventory tracking enabled", preferredStyle: .alert, from: self)
         }
-        self.present(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 68
+        return 128
     }
 }
