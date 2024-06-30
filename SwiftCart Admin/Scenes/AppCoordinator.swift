@@ -19,7 +19,7 @@ class AppCoordinator: Coordinator {
     func start() {
         
         let defaults = UserDefaults.standard
-        let isLogined = defaults.bool(forKey: K.Enums.Auth.userStatus)
+        let isLogined = defaults.bool(forKey: K.Value.Auth.userStatus)
         
         navigationController.navigationBar.isHidden = true
         
@@ -35,33 +35,38 @@ class AppCoordinator: Coordinator {
         let vc = storyboard.instantiateViewController(withIdentifier: K.Main.authVCName) as! AuthViewController
         vc.coordinator = self
         vc.viewModel = AuthViewModel()
-        navigationController.pushViewController(vc, animated: true)
+        navigationController.setViewControllers([vc], animated: true)
     }
     
     func gotoHome() {
         let storyboard = UIStoryboard(name: K.Main.storyboardName, bundle: Bundle.main)
         
-        let homeVC = storyboard.instantiateViewController(withIdentifier: K.Main.homeVCName) as! HomeViewController
+        let homeVC = storyboard.instantiateViewController(withIdentifier: K.Main.homeTableVCName) as! HomeTableViewController
         homeVC.coordinator = self
-        homeVC.viewModel = ProductViewModel(service: RemoteService())
+        homeVC.viewModel = HomeTableViewModel(service: RemoteService())
         homeVC.tabBarItem = UITabBarItem(title: K.Title.home, image: K.SystemImage.home, tag: 0)
         
+        let productVC = storyboard.instantiateViewController(withIdentifier: K.Main.homeVCName) as! HomeViewController
+        productVC.coordinator = self
+        productVC.viewModel = ProductViewModel(service: RemoteService())
+        productVC.tabBarItem = UITabBarItem(title: K.Title.product, image: K.SystemImage.product, tag: 1)
+
         let inventoryVC = storyboard.instantiateViewController(withIdentifier: K.Main.inventoryVCName) as! InventoryViewController
         inventoryVC.coordinator = self
         inventoryVC.viewModel = InventoryViewModel(service: RemoteService())
-        inventoryVC.tabBarItem = UITabBarItem(title: K.Title.inventory, image: K.SystemImage.inventory, tag: 1)
+        inventoryVC.tabBarItem = UITabBarItem(title: K.Title.inventory, image: K.SystemImage.inventory, tag: 2)
         
         let priceRulesVC = storyboard.instantiateViewController(withIdentifier: K.Main.priceRulesVCName) as! PriceRulesViewController
         priceRulesVC.coordinator = self
         priceRulesVC.viewModel = PriceRulesViewModel(service: RemoteService())
-        priceRulesVC.tabBarItem = UITabBarItem(title: K.Title.coupons, image: K.SystemImage.coupons, tag: 2)
+        priceRulesVC.tabBarItem = UITabBarItem(title: K.Title.coupons, image: K.SystemImage.coupons, tag: 3)
         
         let profileVC = storyboard.instantiateViewController(withIdentifier: K.Main.profileVCName) as! ProfileViewController
         profileVC.coordinator = self
-        profileVC.tabBarItem = UITabBarItem(title: K.Title.profile, image: K.SystemImage.profile, tag: 3)
+        profileVC.tabBarItem = UITabBarItem(title: K.Title.profile, image: K.SystemImage.profile, tag: 4)
         
         let tabBar = UITabBarController()
-        tabBar.viewControllers = [homeVC, inventoryVC, priceRulesVC, profileVC]
+        tabBar.viewControllers = [homeVC, productVC, inventoryVC, priceRulesVC, profileVC]
         if let tabBarColor = K.Assets.Color.viewBackground{
             tabBar.tabBar.backgroundColor = tabBarColor
         }
@@ -116,9 +121,10 @@ class AppCoordinator: Coordinator {
     }
     
     func logout(){
-        navigationController.popToRootViewController(animated: true)
-
+        
         let defaults = UserDefaults.standard
-        defaults.set(false, forKey: K.Enums.Auth.userStatus)
+        defaults.set(false, forKey: K.Value.Auth.userStatus)
+        
+        gotoAuth()
     }
 }

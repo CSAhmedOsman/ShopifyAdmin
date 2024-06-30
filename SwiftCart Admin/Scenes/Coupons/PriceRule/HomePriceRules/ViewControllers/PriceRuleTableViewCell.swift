@@ -16,13 +16,13 @@ class PriceRuleTableViewCell: UITableViewCell {
 
     func configuration(for rule: PriceRule){
         
-        let valueType = rule.valueType == K.Enums.Coupons.valueType[1]
-        let isShipping = rule.targetType == K.Enums.Coupons.targetType[1]
+        let valueType = rule.valueType == K.Value.Coupons.valueType[1]
+        let isShipping = rule.targetType == K.Value.Coupons.targetType[1]
         
         imageTarget.image = isShipping ? K.Assets.Image.ShippingPlaceholder : valueType ? K.Assets.Image.PercentagePlaceholder : K.Assets.Image.PriceRulePlaceholder
         
         ruleTitle.text = rule.title
-        ruleValue.text = "Value: \(rule.value ?? "0") \(valueType ? "$" : "%")"
+        ruleValue.text = "Value: \(rule.value ?? "0") \(valueType ? "%" : "$")"
         let date = rule.endsAt?.split(separator: "T")[0]
         ruleEnds.text = "Expiry Date: \(date ?? "None")"
     }

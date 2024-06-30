@@ -46,12 +46,12 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getAllItems()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         searchBarHeight = searchBar.frame.height + 8
+        viewModel.getAllItems()
     }
     
     // MARK: - Setup Methods
@@ -76,10 +76,12 @@ class HomeViewController: UIViewController {
         
         // Handle errors
         viewModel.errorDriver
-            .drive(onNext: { error in
+            .drive(onNext: {  [weak self] error in
                 // Handle error display or logging
-                print("Error fetching products: \(error.localizedDescription)")
-                Utils.showAlert(title: "Error", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                print("Error Fetching products: \(error.localizedDescription)")
+                if let self {
+                    Utils.showAlert(title: "Error Fetching products", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                }
             })
             .disposed(by: disposeBag)
     }

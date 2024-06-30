@@ -34,14 +34,10 @@ class PriceRulesViewController: UIViewController {
         setupViewModel()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.getAllItems()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         searchBarHeight = searchBar.frame.height + 8
+        viewModel.getAllItems()
     }
     
     // MARK: - Setup Methods
@@ -68,10 +64,12 @@ class PriceRulesViewController: UIViewController {
         
         // Handle errors
         viewModel.errorDriver
-            .drive(onNext: { error in
+            .drive(onNext: { [weak self] error in
                 // Handle error display or logging
                 print("Error fetching Inventory: \(error.localizedDescription)")
-                Utils.showAlert(title: "Error", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                if let self {
+                    Utils.showAlert(title: "Error fetching Price Rules", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                }
             })
             .disposed(by: disposeBag)
     }

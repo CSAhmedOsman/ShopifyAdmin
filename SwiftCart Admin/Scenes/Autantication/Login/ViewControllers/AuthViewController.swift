@@ -15,6 +15,7 @@ class AuthViewController: UIViewController {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var userStatus: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,11 @@ class AuthViewController: UIViewController {
             case .success(_):
                 DispatchQueue.main.async {
                     
-                    let defaults = UserDefaults.standard
-                    defaults.set(true, forKey: K.Enums.Auth.userStatus)
-
+                    if self?.userStatus.isOn ?? false{
+                        let defaults = UserDefaults.standard
+                        defaults.set(true, forKey: K.Value.Auth.userStatus)
+                    }
+                    
                     self?.email.text = ""
                     self?.password.text = ""
                     self?.coordinator?.gotoHome()

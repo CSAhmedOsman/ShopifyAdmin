@@ -64,10 +64,12 @@ class DiscountViewController: UIViewController {
         
         // Handle errors
         viewModel.errorDriver
-            .drive(onNext: { error in
+            .drive(onNext: { [weak self] error in
                 // Handle error display or logging
-                print("Error fetching Inventory: \(error)")
-                Utils.showAlert(title: "Error", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                print("Error fetching Discounts: \(error)")
+                if let self {
+                    Utils.showAlert(title: "Error fetching Discounts", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -77,6 +79,7 @@ class DiscountViewController: UIViewController {
         vc.bindDataToBackScreen = { newCode in
             let discount = DiscountCode(code: newCode)
             self.viewModel.addItem(itemData: discount)
+            self.refreshData()
         }
         
         self.present(vc, animated: true)

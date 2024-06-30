@@ -20,13 +20,16 @@ struct InventoryLevelResponse: Codable {
 struct InventoryLevel: Codable {
     var available: Int?
     var inventoryItemId: Int64
-    var locationId: Int64
-    var updatedAt: String
+    var locationId: Int64 = K.Value.Inventory.locationId
+    var inventoryManagement: String?
+    var title: String?
+    var variant: String?
+    var price: String?
+    var imageSrc: String?
     
     enum CodingKeys: String, CodingKey {
         case available
         case inventoryItemId = "inventory_item_id"
         case locationId = "location_id"
-        case updatedAt = "updated_at"
     }
 }

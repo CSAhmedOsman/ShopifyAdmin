@@ -10,9 +10,7 @@ import RxSwift
 import RxCocoa
 
 class InventoryViewModel{
-    
-    typealias T = InventoryLevelResponse?
-    
+        
     var inventoryLevelResponse: InventoryLevelResponse? = nil
     
     private var service: Servicing
@@ -32,17 +30,41 @@ class InventoryViewModel{
     }
     
     func getAllItems() {
-        service.makeAPICall(method: .get, endpoint: K.Endpoint.Inventory.inventoryLevels, byId: nil, itemData: nil)
-            .flatMap { data -> Observable<InventoryLevelResponse> in
-                if let InventoryLevelResponse: InventoryLevelResponse = Utils.decode(from: data) {
-                    return Observable.just(InventoryLevelResponse)
+//        service.makeAPICall(method: .get, endpoint: K.Endpoint.Inventory.inventoryLevels, byId: nil, itemData: nil)
+//            .flatMap { data -> Observable<InventoryLevelResponse> in
+//                if let inventoryResponse: InventoryLevelResponse = Utils.decode(from: data) {
+//                    return Observable.just(inventoryResponse)
+//                } else {
+//                    return Observable.error(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to decode product response"]))
+//                }
+//            }
+//            .subscribe(onNext: { [weak self] response in
+//                print(response)
+//                self?.inventoryLevelResponse = response
+//                self?.bindDataToVc()
+//            }, onError: { [weak self] error in
+//                self?.errorSubject.onNext(error)
+//            })
+//            .disposed(by: disposeBag)
+//    }
+//    
+//    func getAllVariantItems() {
+        service.makeAPICall(method: .get, endpoint: K.Endpoint.Product.product, byId: nil, itemData: nil)
+            .flatMap { data -> Observable<ProductResponse> in
+                if let productResponse: ProductResponse = Utils.decode(from: data) {
+                    return Observable.just(productResponse)
                 } else {
                     return Observable.error(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to decode product response"]))
                 }
             }
             .subscribe(onNext: { [weak self] response in
-                print(response)
-                self?.inventoryLevelResponse = response
+                let items = response.products?.compactMap{ product in
+                    product.variants?.compactMap{ variant in
+                        InventoryLevel(available: variant?.inventoryQuantity, inventoryItemId: variant?.inventoryItemID ?? 0, inventoryManagement: variant?.inventoryManagement, title: product.title, variant: variant?.title, price: variant?.price, imageSrc: product.image?.src)
+                    }
+                }.flatMap { $0 } ?? []
+                
+                self?.inventoryLevelResponse = InventoryLevelResponse(inventoryLevels: items)
                 self?.bindDataToVc()
             }, onError: { [weak self] error in
                 self?.errorSubject.onNext(error)

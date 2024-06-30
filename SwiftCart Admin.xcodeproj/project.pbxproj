@@ -11,6 +11,9 @@
 		041E3A822C2AECF20034E063 /* TryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E3A812C2AECF20034E063 /* TryTests.swift */; };
 		0420004C2C0A142D00356A03 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420004B2C0A142D00356A03 /* Coordinator.swift */; };
 		0420004F2C0A6C7900356A03 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0420004E2C0A6C7900356A03 /* AppCoordinator.swift */; };
+		043991432C2C1C2800E64FA5 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043991422C2C1C2800E64FA5 /* HomeTableViewController.swift */; };
+		043991462C2C1C8E00E64FA5 /* HomeTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043991452C2C1C8E00E64FA5 /* HomeTableViewModel.swift */; };
+		043991492C2CF5E200E64FA5 /* InventoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043991482C2CF5E200E64FA5 /* InventoryTableViewCell.swift */; };
 		046841242C2991A500E0DA48 /* PriceRulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046841232C2991A500E0DA48 /* PriceRulesViewModel.swift */; };
 		046841272C29AD3C00E0DA48 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 046841262C29AD3C00E0DA48 /* FirebaseAuth */; };
 		046841292C29AD3C00E0DA48 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 046841282C29AD3C00E0DA48 /* FirebaseFirestore */; };
@@ -68,6 +71,9 @@
 		041E3A812C2AECF20034E063 /* TryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryTests.swift; sourceTree = "<group>"; };
 		0420004B2C0A142D00356A03 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		0420004E2C0A6C7900356A03 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		043991422C2C1C2800E64FA5 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		043991452C2C1C8E00E64FA5 /* HomeTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewModel.swift; sourceTree = "<group>"; };
+		043991482C2CF5E200E64FA5 /* InventoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableViewCell.swift; sourceTree = "<group>"; };
 		046841232C2991A500E0DA48 /* PriceRulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRulesViewModel.swift; sourceTree = "<group>"; };
 		0468412A2C29AF8D00E0DA48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		047199812C255830001FFFA6 /* PriceRuleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRuleModel.swift; sourceTree = "<group>"; };
@@ -133,6 +139,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0439913E2C2C1B1100E64FA5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0439913F2C2C1B2300E64FA5 /* ViewControllers */,
+				043991442C2C1C6400E64FA5 /* ViewModel */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0439913F2C2C1B2300E64FA5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				043991422C2C1C2800E64FA5 /* HomeTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		043991442C2C1C6400E64FA5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				043991452C2C1C8E00E64FA5 /* HomeTableViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		043991472C2CF5A600E64FA5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				043991482C2CF5E200E64FA5 /* InventoryTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		046841222C29917F00E0DA48 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,8 +191,9 @@
 		0477E0F62C2956E900610C5C /* Inventory */ = {
 			isa = PBXGroup;
 			children = (
-				0477E0FE2C295E4C00610C5C /* ViewModel */,
+				043991472C2CF5A600E64FA5 /* Views */,
 				0477E0FB2C295A3E00610C5C /* ViewController */,
+				0477E0FE2C295E4C00610C5C /* ViewModel */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -287,6 +327,7 @@
 				049850702C09F6C100F2E137 /* LaunchScreen.storyboard */,
 				0420004B2C0A142D00356A03 /* Coordinator.swift */,
 				0420004E2C0A6C7900356A03 /* AppCoordinator.swift */,
+				0439913E2C2C1B1100E64FA5 /* Home */,
 				049961212C0D71DE00466BA3 /* Autantication */,
 				048E8E4F2C18818C0010C039 /* Products */,
 				04B810BD2C21B490005188D1 /* Coupons */,
@@ -619,12 +660,15 @@
 				04DFFBA12C2A70C800DE36C1 /* AddDiscountViewController.swift in Sources */,
 				04DF829C2C2317A20046C3DD /* Constants.swift in Sources */,
 				049850662C09F6BF00F2E137 /* AppDelegate.swift in Sources */,
+				043991492C2CF5E200E64FA5 /* InventoryTableViewCell.swift in Sources */,
 				04B810C32C21B526005188D1 /* PriceRulesViewController.swift in Sources */,
 				049850832C09F78800F2E137 /* ProductModel.swift in Sources */,
+				043991432C2C1C2800E64FA5 /* HomeTableViewController.swift in Sources */,
 				0477E0FD2C295A5700610C5C /* InventoryViewController.swift in Sources */,
 				0420004F2C0A6C7900356A03 /* AppCoordinator.swift in Sources */,
 				0477E0F52C294F1800610C5C /* InventoryModel.swift in Sources */,
 				04E42CD82C2A276100EB7AED /* PriceRuleTableViewCell.swift in Sources */,
+				043991462C2C1C8E00E64FA5 /* HomeTableViewModel.swift in Sources */,
 				04DFFBAA2C2AB00000DE36C1 /* ProfileViewController.swift in Sources */,
 				048E8E572C1947040010C039 /* ProductImageCell.swift in Sources */,
 				04B810C62C21B5C0005188D1 /* AddPriceRuleViewController.swift in Sources */,

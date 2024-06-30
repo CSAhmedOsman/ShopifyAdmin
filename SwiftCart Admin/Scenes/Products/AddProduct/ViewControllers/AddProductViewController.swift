@@ -40,15 +40,32 @@ class AddProductViewController: UIViewController {
     @IBOutlet weak var tfProductQuantity: UITextField!
     @IBOutlet weak var productVariantsTable: UITableView!
     
+    @IBOutlet weak var saveButton: UIButton!
+    
     var tags: [String] = []
     var options: [String] = []{
         didSet{
             setupMenuButton(options: options, for: optionsButton)
         }
     }
-    var option1Values: [String] = []
-    var option2Values: [String] = []
-    var option3Values: [String] = []
+    var option1Values: [String] = []{
+        didSet{
+            setupMenuButton(options: option1Values, for: option1Button)
+            productOption1ValuesTable.reloadData()
+        }
+    }
+    var option2Values: [String] = []{
+        didSet{
+            setupMenuButton(options: option2Values, for: option2Button)
+            productOption2ValuesTable.reloadData()
+        }
+    }
+    var option3Values: [String] = []{
+        didSet{
+            setupMenuButton(options: option3Values, for: option3Button)
+            productOption3ValuesTable.reloadData()
+        }
+    }
     
     var product: ProductDetail! = nil
     var isEdit = false
@@ -57,20 +74,41 @@ class AddProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupViewModel()
     }
     
     // MARK: - Setup Methods
+    
+    private func setupViewModel(){
+        // Bind product data to collection view using RxSwift
+        viewModel.bindDataToVc = { [weak self] in
+            self?.coordinator?.finish()
+        }
+        
+        // Handle errors
+        viewModel.errorDriver
+            .drive(onNext: { [weak self] error in
+                // Handle error display or logging
+                print("Error Save Product: \(error.localizedDescription)")
+                self?.saveButton.configuration?.showsActivityIndicator = false
+                if let self {
+                    Utils.showAlert(title: "Error Save Product", message: error.localizedDescription, preferredStyle: .alert, from: self)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     private func setupUI() {
         setupProductDetail()
         setupProductImagesCollection()
         setupTableViews()
         
-        setupMenuButton(options: K.Enums.Product.vendors, for: vendorButton)
-        setupMenuButton(options: K.Enums.Product.productTypes, for: productTypeButton)
-        setupMenuButton(options: options, for: optionsButton)
-        setupMenuButton(options: option1Values, for: option1Button)
-        setupMenuButton(options: option2Values, for: option2Button)
-        setupMenuButton(options: option3Values, for: option3Button)
+        setupMenuButton(options: K.Value.Product.vendors, for: vendorButton)
+        setupMenuButton(options: K.Value.Product.productTypes, for: productTypeButton)
+//        setupMenuButton(options: options, for: optionsButton)
+//        setupMenuButton(options: option1Values, for: option1Button)
+//        setupMenuButton(options: option2Values, for: option2Button)
+//        setupMenuButton(options: option3Values, for: option3Button)
     }
     
     private func setupProductDetail() {
@@ -180,11 +218,10 @@ class AddProductViewController: UIViewController {
     }
     
     @IBAction func addOption(_ sender: UIButton) {
-        guard let option = tfOptionName.text, !option.isEmpty, options.count < 3,
+        guard let option = tfOptionName.text?.capitalized, !option.isEmpty, options.count < 3,
               !options.contains(where: { $0.lowercased() == option.lowercased() }) else { return }
         
         options.append(option)
-        setupMenuButton(options: options, for: optionsButton)
         
         productOptionsTable.reloadData()
         
@@ -246,8 +283,12 @@ class AddProductViewController: UIViewController {
         let option2 = option2Button.titleLabel?.text == "Option2" ? nil : option2Button.titleLabel?.text
         let option3 = option3Button.titleLabel?.text == "Option3" ? nil : option3Button.titleLabel?.text
         
+        let options = [option1, option2, option3].compactMap { $0 }
+        
+        let title = options.isEmpty ? tfProductName.text : options.joined(separator: " / ")
+        
         let variant = ProductVariant(
-            title: "\(option1 ?? "") / \(option2 ?? "") / \(option3 ?? "")",
+            title: title,
             price: priceText,
             option1: option1,
             option2: option2,
@@ -263,39 +304,42 @@ class AddProductViewController: UIViewController {
     }
     
     @IBAction func saveChanges(_ sender: UIButton) {
-        guard let title = tfProductName.text, !title.isEmpty else {
+        guard let title = tfProductName.text?.capitalized, !title.isEmpty else {
             Utils.showAlert(title: "Title", message: "Product title is required.", preferredStyle: .alert, from: self)
             return
         }
-        
-        product.title = title
-        
+                
         guard let images = product?.images, !images.isEmpty else {
             Utils.showAlert(title: "Image", message: "At least one image is required.", preferredStyle: .alert, from: self)
             return
         }
-        
-        product.image = images.first!
         
         guard let vendor = vendorButton.titleLabel?.text, vendor != "Vendor" else {
             Utils.showAlert(title: "Vendor", message: "Vendor is required.", preferredStyle: .alert, from: self)
             return
         }
         
-        product.vendor = vendor
-        
         guard let productType = productTypeButton.titleLabel?.text, productType != "Product Type" else {
             Utils.showAlert(title: "Product Type", message: "Product type is required.", preferredStyle: .alert, from: self)
             return
         }
-        
-        product.productType = productType
         
         guard let description = tvProductDescription.text, !description.isEmpty else {
             Utils.showAlert(title: "Description", message: "Product description is required.", preferredStyle: .alert, from: self)
             return
         }
         
+        guard options.count > 0 && option1Values.count > 0 else {
+            Utils.showAlert(title: "Options", message: "At least one option with one value is required.", preferredStyle: .alert, from: self)
+            return
+        }
+        
+        let name = title.split(separator: "|").last?.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        product.title = "\(vendor) | \(name ?? "")"
+        product.vendor = vendor
+        product.image = images.first!
+        product.productType = productType
         product.bodyHTML = description
         
         product.tags = tags.joined(separator: ", ")
@@ -319,7 +363,7 @@ class AddProductViewController: UIViewController {
                 Utils.showAlert(title: "Invalid Input", message: "Please provide valid price or default price.", preferredStyle: .alert, from: self)
                 return
             }
-            product.variants = (product.variants ?? []) + [ProductVariant(price: price)]
+            product.variants = (product.variants ?? []) + [ProductVariant(title: option1Values.first ?? "OS", price: price, option1: option1Values.first ?? "OS")]
         }
         
         sender.configuration?.showsActivityIndicator = true
@@ -331,10 +375,7 @@ class AddProductViewController: UIViewController {
         }else {
             viewModel.addItem(itemData: ProductResponse(product: product))
         }
-        
-        viewModel.bindDataToVc = { [weak self] in
-            self?.coordinator?.finish()
-        }
+
     }
     
     
@@ -400,8 +441,9 @@ extension AddProductViewController: UITableViewDelegate, UITableViewDataSource {
         case productOption3ValuesTable:
             cell.textLabel?.text = option3Values[indexPath.item]
         case productVariantsTable:
-            cell.textLabel?.text = "Variant: \(product.variants?[indexPath.item]?.title ?? "")"
-            cell.detailTextLabel?.text = "Price: \(product.variants?[indexPath.item]?.price ?? "0")"
+            let variant = product.variants?[indexPath.item]
+            cell.textLabel?.text = "Variant: \(variant?.title ?? "")"
+            cell.detailTextLabel?.text = "Quantity: \(variant?.inventoryQuantity ?? 0), Price: \(variant?.price ?? "0")"
         default:
             return UITableViewCell()
         }
