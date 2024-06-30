@@ -20,7 +20,8 @@ class InventoryTableViewCell: UITableViewCell {
     func config(item: InventoryLevel){
         
         itemImage.kf.setImage(with: URL(string: item.imageSrc ?? ""), placeholder: K.Assets.Image.InventoryItem)
-        itemTitle.text = item.title
+        let title = item.title?.split(separator: "|").last ?? "Item"
+        itemTitle.text = "\(title)"
         itemId.text = "Item Id: \(item.inventoryItemId)"
         itemSubTitle.text = item.variant
         itemPrice.text = item.price

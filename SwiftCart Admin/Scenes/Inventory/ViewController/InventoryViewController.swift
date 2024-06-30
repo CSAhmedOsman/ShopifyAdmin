@@ -109,7 +109,7 @@ extension InventoryViewController: UISearchBarDelegate{
         if searchText.isEmpty {
             allInventoryLevels = viewModel.inventoryLevelResponse?.inventoryLevels ?? []
         } else {
-            allInventoryLevels = (viewModel.inventoryLevelResponse?.inventoryLevels ?? []).filter { "\($0.inventoryItemId)".contains(searchText) }
+            allInventoryLevels = (viewModel.inventoryLevelResponse?.inventoryLevels ?? []).filter { "\($0.inventoryItemId)".contains(searchText) || ($0.title?.contains(searchText) ?? false)}
         }
         inventoryLevelsTable.reloadData()
     }

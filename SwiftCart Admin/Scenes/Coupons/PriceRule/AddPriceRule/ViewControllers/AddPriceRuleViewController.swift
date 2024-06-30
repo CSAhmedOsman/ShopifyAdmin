@@ -19,12 +19,15 @@ class AddPriceRuleViewController: UIViewController {
     @IBOutlet weak var tfPriceTitle: UITextField!
     @IBOutlet weak var tfPriceValue: UITextField!
     @IBOutlet weak var btnValueType: UIButton!
-    @IBOutlet weak var btnTargetType: UIButton!
+//    @IBOutlet weak var btnTargetType: UIButton!
     @IBOutlet weak var btnAllocationMethod: UIButton!
     @IBOutlet weak var tfUsageLimit: UITextField!
     @IBOutlet weak var schCodeUsage: UISwitch!
     @IBOutlet weak var dpStartsAt: UIDatePicker!
     @IBOutlet weak var dpEndsAt: UIDatePicker!
+    
+    @IBOutlet weak var startAt: UILabel!
+    @IBOutlet weak var endsAt: UILabel!
     
     @IBOutlet weak var saveButton: UIButton!
     
@@ -46,7 +49,7 @@ class AddPriceRuleViewController: UIViewController {
     
     func setupMenuButtons(){
         setupMenuButton(options: K.Value.Coupons.valueType, for: btnValueType)
-        setupMenuButton(options: K.Value.Coupons.targetType, for: btnTargetType)
+//        setupMenuButton(options: K.Value.Coupons.targetType, for: btnTargetType)
         setupMenuButton(options: K.Value.Coupons.allocationMethod, for: btnAllocationMethod)
     }
     
@@ -92,16 +95,21 @@ class AddPriceRuleViewController: UIViewController {
             tfPriceTitle.text = priceRule.title
             tfPriceValue.text = priceRule.value
             btnValueType.setTitle(priceRule.valueType, for: .normal)
-            btnTargetType.setTitle(priceRule.targetType, for: .normal)
+//            btnTargetType.setTitle(priceRule.targetType, for: .normal)
             btnAllocationMethod.setTitle(priceRule.allocationMethod, for: .normal)
             tfUsageLimit.text = "\(priceRule.usageLimit ?? 0)"
             schCodeUsage.setOn(priceRule.oncePerCustomer ?? false, animated: true)
             
             dpStartsAt.date = dateFormatter.date(from: priceRule.startsAt ?? "") ?? Date()
+            startAt.text = "\(priceRule.startsAt?.split(separator: "T")[0] ?? "None")"
+
             dpEndsAt.date = dateFormatter.date(from: priceRule.endsAt ?? "") ?? Date()
+            endsAt.text = "\(priceRule.endsAt?.split(separator: "T")[0] ?? "None")"
+
         }else {
             priceRule = PriceRule()
-            
+            startAt.text = ""
+            endsAt.text = ""
         }
     }
 
@@ -110,7 +118,7 @@ class AddPriceRuleViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         // Set locale to en_US_POSIX to ensure consistent parsing
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    }   
+    }
     
     func setupDatePicker(){
         dpEndsAt.minimumDate = dpStartsAt.date
@@ -167,11 +175,11 @@ class AddPriceRuleViewController: UIViewController {
         }
         priceRule.valueType = valueType
         
-        guard let targetType = btnTargetType.titleLabel?.text, !targetType.isEqual("Target Type") else {
-            Utils.showAlert(title: "Target Type", message: "Target Type is required.", preferredStyle: .alert, from: self)
-            return
-        }
-        priceRule.targetType = targetType
+//        guard let targetType = btnTargetType.titleLabel?.text, !targetType.isEqual("Target Type") else {
+//            Utils.showAlert(title: "Target Type", message: "Target Type is required.", preferredStyle: .alert, from: self)
+//            return
+//        }
+        priceRule.targetType = K.Value.Coupons.targetType[0]
         
         guard let allocationMethod = btnAllocationMethod.titleLabel?.text, !allocationMethod.isEqual("Allocation Method") else {
             Utils.showAlert(title: "Allocation Method", message: "Allocation Method is required.", preferredStyle: .alert, from: self)
